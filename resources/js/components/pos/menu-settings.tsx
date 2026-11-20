@@ -13,6 +13,8 @@ import {
     XCircle,
     ImageIcon,
     SlidersHorizontal,
+    Upload,
+    X,
 } from 'lucide-react';
 import { PosCategoryItem } from './category-settings';
 
@@ -451,7 +453,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                 required
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                placeholder="Contoh: Kopi Susu Gula Aren, Croissant Butter"
+                                placeholder="Contoh: Kopi Susu Aren, Croissant..."
                                 className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 text-stone-900 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white dark:focus:bg-stone-800"
                             />
                         </div>
@@ -486,26 +488,26 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                 <button
                                     type="button"
                                     onClick={() => setStockStatus('in_stock')}
-                                    className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border p-2 font-bold transition ${
+                                    className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border p-2 text-xs font-bold transition ${
                                         stockStatus === 'in_stock'
                                             ? 'border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
                                             : 'border-stone-200 bg-stone-50 text-stone-600 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-400'
                                     }`}
                                 >
-                                    <CheckCircle2 className="h-3.5 w-3.5" />
-                                    <span>Tersedia (Ready)</span>
+                                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                                    <span className="truncate">Tersedia (Ready)</span>
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setStockStatus('out_of_stock')}
-                                    className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border p-2 font-bold transition ${
+                                    className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border p-2 text-xs font-bold transition ${
                                         stockStatus === 'out_of_stock'
                                             ? 'border-rose-500 bg-rose-50 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300'
                                             : 'border-stone-200 bg-stone-50 text-stone-600 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-400'
                                     }`}
                                 >
-                                    <XCircle className="h-3.5 w-3.5" />
-                                    <span>Habis (Sold Out)</span>
+                                    <XCircle className="h-3.5 w-3.5 shrink-0" />
+                                    <span className="truncate">Habis (Sold Out)</span>
                                 </button>
                             </div>
                         </div>
@@ -530,48 +532,55 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                 {variants.map((v, idx) => (
                                     <div
                                         key={idx}
-                                        className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50/70 p-2.5 dark:border-stone-700 dark:bg-stone-800/50"
+                                        className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-stone-50/70 p-2.5 sm:flex-row sm:items-center dark:border-stone-700 dark:bg-stone-800/50"
                                     >
-                                        <input
-                                            type="text"
-                                            required
-                                            value={v.label}
-                                            onChange={(e) =>
-                                                handleVariantChange(idx, 'label', e.target.value)
-                                            }
-                                            placeholder="Nama Varian (Hot, Ice, Large...)"
-                                            className="flex-1 rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-xs text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
-                                        />
-                                        <div className="relative w-36 sm:w-44">
-                                            <span className="pointer-events-none absolute top-1.5 left-2.5 text-xs font-semibold text-stone-400">
-                                                Rp
+                                        <div className="min-w-0 flex-1">
+                                            <span className="mb-1 block text-[10px] font-semibold text-stone-500 sm:hidden">
+                                                Nama Varian {variants.length > 1 ? `#${idx + 1}` : ''}
                                             </span>
                                             <input
-                                                type="number"
+                                                type="text"
                                                 required
-                                                min="0"
-                                                value={v.price}
+                                                value={v.label}
                                                 onChange={(e) =>
-                                                    handleVariantChange(
-                                                        idx,
-                                                        'price',
-                                                        e.target.value === '' ? '' : Number(e.target.value),
-                                                    )
+                                                    handleVariantChange(idx, 'label', e.target.value)
                                                 }
-                                                placeholder="Harga..."
-                                                className="w-full rounded-lg border border-stone-200 bg-white py-1.5 pr-2.5 pl-8 text-xs font-bold text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
+                                                placeholder={idx === 0 ? 'Standar / Reguler' : 'Hot, Ice, Large, dll'}
+                                                className="w-full rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-xs text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
                                             />
                                         </div>
-                                        {variants.length > 1 && (
-                                            <button
-                                                type="button"
-                                                onClick={() => handleRemoveVariantRow(idx)}
-                                                className="cursor-pointer text-stone-400 hover:text-rose-600"
-                                                title="Hapus varian ini"
-                                            >
-                                                <Trash2 className="h-4 w-4" />
-                                            </button>
-                                        )}
+                                        <div className="flex items-center gap-2 sm:w-44">
+                                            <div className="relative min-w-0 flex-1 sm:w-full">
+                                                <span className="pointer-events-none absolute top-1.5 left-2.5 text-xs font-semibold text-stone-400">
+                                                    Rp
+                                                </span>
+                                                <input
+                                                    type="number"
+                                                    required
+                                                    min="0"
+                                                    value={v.price}
+                                                    onChange={(e) =>
+                                                        handleVariantChange(
+                                                            idx,
+                                                            'price',
+                                                            e.target.value === '' ? '' : Number(e.target.value),
+                                                        )
+                                                    }
+                                                    placeholder="0"
+                                                    className="w-full rounded-lg border border-stone-200 bg-white py-1.5 pr-2.5 pl-8 text-xs font-bold text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
+                                                />
+                                            </div>
+                                            {variants.length > 1 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleRemoveVariantRow(idx)}
+                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-rose-200 bg-white text-rose-600 hover:bg-rose-50 dark:border-rose-900/50 dark:bg-stone-800 dark:text-rose-400 dark:hover:bg-rose-950/50 sm:border-0 sm:bg-transparent"
+                                                    title="Hapus varian ini"
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -592,34 +601,54 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                         </div>
 
                         {/* Foto Menu */}
-                        <div className="space-y-1">
+                        <div className="space-y-1.5">
                             <label className="font-semibold text-stone-700 dark:text-stone-300">
                                 Foto Menu Makanan / Minuman (Opsional)
                             </label>
                             <div className="flex items-center gap-3">
                                 {imagePreview ? (
-                                    <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-stone-200 bg-stone-100 shadow-2xs dark:border-stone-700 dark:bg-stone-800">
+                                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-stone-200 bg-stone-100 shadow-2xs dark:border-stone-700 dark:bg-stone-800">
                                         <img
                                             src={imagePreview}
                                             alt="Preview"
                                             className="h-full w-full object-cover"
                                         />
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setImageFile(null);
+                                                setImagePreview(null);
+                                                if (fileInputRef.current) fileInputRef.current.value = '';
+                                            }}
+                                            className="absolute top-1 right-1 cursor-pointer rounded-full bg-stone-900/80 p-0.5 text-white transition hover:bg-rose-600"
+                                            title="Hapus gambar"
+                                        >
+                                            <X className="h-3 w-3" />
+                                        </button>
                                     </div>
                                 ) : (
-                                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-dashed border-stone-300 bg-stone-50 text-stone-400 dark:border-stone-700 dark:bg-stone-800">
+                                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-dashed border-stone-300 bg-stone-50 text-stone-400 dark:border-stone-700 dark:bg-stone-800">
                                         <ImageIcon className="h-6 w-6 stroke-1" />
                                     </div>
                                 )}
-                                <div className="flex-1 space-y-1">
+                                <div className="min-w-0 flex-1 space-y-1.5">
                                     <input
                                         type="file"
                                         ref={fileInputRef}
                                         accept="image/*"
                                         onChange={handleImageChange}
-                                        className="w-full text-xs text-stone-500 file:mr-2 file:cursor-pointer file:rounded-lg file:border-0 file:bg-brand-50 file:px-2.5 file:py-1 file:text-xs file:font-bold file:text-brand-700 hover:file:bg-brand-100 dark:file:bg-brand-950/60 dark:file:text-brand-300"
+                                        className="hidden"
                                     />
-                                    <p className="text-[10px] text-stone-400">
-                                        Format: JPG, PNG, WEBP (Maks 5MB)
+                                    <button
+                                        type="button"
+                                        onClick={() => fileInputRef.current?.click()}
+                                        className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-stone-200 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 shadow-2xs hover:bg-stone-50 active:bg-stone-100 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700"
+                                    >
+                                        <Upload className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" />
+                                        <span>{imageFile ? 'Ganti Foto' : 'Pilih Foto Menu'}</span>
+                                    </button>
+                                    <p className="truncate text-[10px] text-stone-400">
+                                        {imageFile ? imageFile.name : 'Format: JPG, PNG, WEBP (Maks 5MB)'}
                                     </p>
                                 </div>
                             </div>
