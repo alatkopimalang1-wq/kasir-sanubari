@@ -768,7 +768,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                 return (
                                     <div
                                         key={product.id}
-                                        className={`flex flex-col justify-between gap-3 rounded-xl border p-3.5 transition sm:flex-row sm:items-center ${
+                                        className={`flex items-center justify-between gap-2.5 rounded-xl border p-2.5 transition sm:p-3.5 ${
                                             editingProductId === product.id
                                                 ? 'border-amber-500/50 bg-amber-50/40 dark:border-amber-500/30 dark:bg-amber-950/20'
                                                 : isReady
@@ -776,9 +776,9 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                                   : 'border-stone-200 bg-stone-100/70 opacity-75 dark:border-stone-800 dark:bg-stone-900/60'
                                         }`}
                                     >
-                                        <div className="flex items-start gap-3">
+                                        <div className="flex min-w-0 flex-1 items-center gap-2.5 sm:items-start sm:gap-3">
                                             {/* Foto */}
-                                            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-stone-200 bg-stone-100 shadow-2xs dark:border-stone-700 dark:bg-stone-800">
+                                            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border border-stone-200 bg-stone-100 shadow-2xs sm:h-12 sm:w-12 dark:border-stone-700 dark:bg-stone-800">
                                                 <img
                                                     src={product.image || '/brand/logo-circle.png'}
                                                     alt={product.name}
@@ -790,20 +790,20 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                             </div>
 
                                             {/* Info */}
-                                            <div className="min-w-0 space-y-1">
+                                            <div className="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
                                                 <div className="flex flex-wrap items-center gap-1.5">
-                                                    <span className="font-bold text-stone-900 dark:text-white">
+                                                    <span className="truncate text-xs font-bold text-stone-900 sm:text-sm dark:text-white">
                                                         {product.name}
                                                     </span>
                                                     {getSafeCategoryName(product.category_name) ? (
-                                                        <span className="rounded-full bg-stone-100 px-2 py-0.5 text-[10px] font-semibold text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+                                                        <span className="hidden rounded-full bg-stone-100 px-2 py-0.5 text-[10px] font-semibold text-stone-600 sm:inline-block dark:bg-stone-800 dark:text-stone-300">
                                                             {getSafeCategoryName(product.category_name)}
                                                         </span>
                                                     ) : null}
                                                 </div>
 
-                                                {/* Varian Prices */}
-                                                <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                                                {/* Varian Prices - disembunyikan di mobile agar tidak memakan tempat */}
+                                                <div className="hidden flex-wrap items-center gap-1.5 text-xs sm:flex">
                                                     {Array.isArray(product.variants) && product.variants.length > 0 ? (
                                                         product.variants.map((v, vIdx) => (
                                                             <span
@@ -821,7 +821,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                                 </div>
 
                                                 {product.description && (
-                                                    <p className="line-clamp-1 text-[11px] text-stone-400">
+                                                    <p className="hidden line-clamp-1 text-[11px] text-stone-400 sm:block">
                                                         {product.description}
                                                     </p>
                                                 )}
@@ -829,13 +829,13 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                         </div>
 
                                         {/* Aksi & Status */}
-                                        <div className="flex shrink-0 items-center justify-between gap-2 border-t border-stone-100 pt-2 sm:border-t-0 sm:pt-0">
+                                        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
                                             {/* Quick Toggle Stok */}
                                             <button
                                                 type="button"
                                                 disabled={isToggling}
                                                 onClick={() => handleToggleStock(product)}
-                                                className={`cursor-pointer rounded-lg px-2.5 py-1 text-[11px] font-bold transition ${
+                                                className={`cursor-pointer rounded-lg px-2 py-1 text-[10px] font-bold transition sm:px-2.5 sm:text-[11px] ${
                                                     isReady
                                                         ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300'
                                                         : 'bg-rose-100 text-rose-800 hover:bg-rose-200 dark:bg-rose-950/70 dark:text-rose-300'
@@ -843,7 +843,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                                 title="Klik untuk ubah Tersedia / Habis"
                                             >
                                                 {isToggling ? (
-                                                    <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                                                    <RefreshCw className="h-3 w-3 animate-spin sm:h-3.5 sm:w-3.5" />
                                                 ) : isReady ? (
                                                     '● Ready'
                                                 ) : (
@@ -854,7 +854,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                             <button
                                                 type="button"
                                                 onClick={() => handleStartEdit(product)}
-                                                className="cursor-pointer rounded-lg border border-stone-200 bg-white p-2 text-stone-600 shadow-2xs transition hover:border-amber-300 hover:bg-amber-50 hover:text-amber-700 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:border-amber-600 dark:hover:bg-amber-950/60 dark:hover:text-amber-300"
+                                                className="cursor-pointer rounded-lg border border-stone-200 bg-white p-1.5 text-stone-600 shadow-2xs transition hover:border-amber-300 hover:bg-amber-50 hover:text-amber-700 sm:p-2 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:border-amber-600 dark:hover:bg-amber-950/60 dark:hover:text-amber-300"
                                                 title="Edit Menu"
                                             >
                                                 <Pencil className="h-3.5 w-3.5" />
@@ -864,11 +864,11 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                                 type="button"
                                                 disabled={isDeleting}
                                                 onClick={() => handleDeleteProduct(product)}
-                                                className="cursor-pointer rounded-lg border border-stone-200 bg-white p-2 text-rose-600 shadow-2xs transition hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-800 dark:text-rose-400 dark:hover:border-rose-800 dark:hover:bg-rose-950/60"
+                                                className="cursor-pointer rounded-lg border border-stone-200 bg-white p-1.5 text-rose-600 shadow-2xs transition hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 disabled:opacity-50 sm:p-2 dark:border-stone-700 dark:bg-stone-800 dark:text-rose-400 dark:hover:border-rose-800 dark:hover:bg-rose-950/60"
                                                 title="Hapus Menu"
                                             >
                                                 {isDeleting ? (
-                                                    <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                                                    <RefreshCw className="h-3.5 w-3.5 animate-spin sm:h-3.5 sm:w-3.5" />
                                                 ) : (
                                                     <Trash2 className="h-3.5 w-3.5" />
                                                 )}
