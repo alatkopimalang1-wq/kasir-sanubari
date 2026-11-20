@@ -1,0 +1,43 @@
+name: Build Desktop POS App (Windows PC)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'desktop/**'
+      - '.github/workflows/build-pos-desktop.yml'
+
+jobs:
+  build-windows:
+    name: Build Windows PC App (.exe)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache-dependency-path: desktop/package.json
+
+      - name: Install Desktop Dependencies
+        run: |
+          cd desktop
+          npm install
+
+      - name: Build Windows Executables
+        run: |
+          cd desktop
+          npm run dist
+
+      - name: Upload Windows Executables
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sanubari-POS-Windows
+          path: desktop/dist/*.exe
+          retention-days: 30

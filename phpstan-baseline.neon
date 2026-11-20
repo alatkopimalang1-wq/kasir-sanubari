@@ -1,0 +1,2851 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$original_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$sku\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$stock_status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Call to function is_string\(\) with array will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:extractSpecs\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:seedCategories\(\) has parameter \$categories with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:seedCategories\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:seedProducts\(\) has parameter \$categoryData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:seedProducts\(\) has parameter \$products with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:seedSettings\(\) has parameter \$brand with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:syncImages\(\) has parameter \$images with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SanubariImportCommand\:\:syncVariants\(\) has parameter \$item with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Offset ''espresso\-beans''\|''filter\-beans'' on array\{filter\-beans\: App\\Models\\Category, espresso\-beans\: App\\Models\\Category, kawi\: App\\Models\\Category, peralatan\-seduh\: App\\Models\\Category, classic\-process\?\: App\\Models\\Category, experimental\-process\?\: App\\Models\\Category, co\-ferment\-process\?\: App\\Models\\Category, arabica\?\: App\\Models\\Category, \.\.\.\} in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.offset
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Offset ''icon'' on array\{name\: array\{id\: ''Arabica Espresso'', en\: ''Arabica Espresso''\}, slug\: ''arabica'', type\: ''espresso'', parent\: ''espresso\-beans'', description\: array\{id\: ''100%% Arabika untuk…'', en\: ''100%% Arabica for…''\}, sort_order\: 21\}\|array\{name\: array\{id\: ''Classic Process'', en\: ''Classic Process''\}, slug\: ''classic\-process'', type\: ''filter'', parent\: ''filter\-beans'', description\: array\{id\: ''Proses klasik\:…'', en\: ''Classic Washed,…''\}, sort_order\: 11\}\|array\{name\: array\{id\: ''CO\-Ferment Process'', en\: ''CO\-Ferment Process''\}, slug\: ''co\-ferment\-process'', type\: ''filter'', parent\: ''filter\-beans'', description\: array\{id\: ''Inovasi co…'', en\: ''Fresh fruit co…''\}, sort_order\: 13\}\|array\{name\: array\{id\: ''Experimental Process'', en\: ''Experimental Process''\}, slug\: ''experimental\-process'', type\: ''filter'', parent\: ''filter\-beans'', description\: array\{id\: ''Proses…'', en\: ''Experimental…''\}, sort_order\: 12\}\|array\{name\: array\{id\: ''Fine Robusta'', en\: ''Fine Robusta''\}, slug\: ''robusta'', type\: ''espresso'', parent\: ''espresso\-beans'', description\: array\{id\: ''Robusta pilihan…'', en\: ''Selected fine…''\}, sort_order\: 23\}\|array\{name\: array\{id\: ''Houseblend'', en\: ''Houseblend''\}, slug\: ''houseblend'', type\: ''espresso'', parent\: ''espresso\-beans'', description\: array\{id\: ''Racikan signature…'', en\: ''Sanubari signature…''\}, sort_order\: 22\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Offset ''icon'' on array\{name\: array\{id\: ''Espresso Beans'', en\: ''Espresso Beans''\}, slug\: ''espresso\-beans'', type\: ''espresso'', description\: array\{id\: ''Biji kopi espresso…'', en\: ''Espresso beans…''\}, icon\: ''flame'', sort_order\: 2\}\|array\{name\: array\{id\: ''Filter Beans'', en\: ''Filter Beans''\}, slug\: ''filter\-beans'', type\: ''filter'', description\: array\{id\: ''Koleksi biji kopi…'', en\: ''Curated filter…''\}, icon\: ''droplet'', sort_order\: 1\}\|array\{name\: array\{id\: ''Koleksi Kawi'', en\: ''Kawi Collection''\}, slug\: ''kawi'', type\: ''brand'', description\: array\{id\: ''Kopi signature…'', en\: ''Signature coffees…''\}, icon\: ''mountain'', sort_order\: 3\}\|array\{name\: array\{id\: ''Peralatan Seduh'', en\: ''Brewing Equipment''\}, slug\: ''peralatan\-seduh'', type\: ''merch'', description\: array\{id\: ''Peralatan seduh…'', en\: ''Manual brewing gear…''\}, icon\: ''filter'', sort_order\: 30\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>original_price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>sku" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>stock_status" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Console/Commands/SanubariImportCommand.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageBackInStock\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$images\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$min_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageBackInStock\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBackInStock.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageBookingBanner\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageBookingBanner.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBookingBanner.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageBookingBanner\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBookingBanner.php
+
+		-
+			message: '#^Property App\\Filament\\Pages\\HalamanAwal\\ManageBookingBanner\:\:\$data type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBookingBanner.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageBrewBanner\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageBrewBanner.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBrewBanner.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageBrewBanner\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBrewBanner.php
+
+		-
+			message: '#^Property App\\Filament\\Pages\\HalamanAwal\\ManageBrewBanner\:\:\$data type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageBrewBanner.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageCategoryMenu\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageCategoryMenu.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageCategoryMenu.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageCategoryMenu.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageCategoryMenu\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageCategoryMenu.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageCateringBanner\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageCateringBanner.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageCateringBanner.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageCateringBanner\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageCateringBanner.php
+
+		-
+			message: '#^Property App\\Filament\\Pages\\HalamanAwal\\ManageCateringBanner\:\:\$data type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageCateringBanner.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageEditorialSection\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageEditorialSection.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageEditorialSection.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageEditorialSection.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageEditorialSection\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageEditorialSection.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageFeaturedMenu\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageFeaturedMenu.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFeaturedMenu.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageFeaturedMenu\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFeaturedMenu.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageFlashSale\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$images\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$min_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageFlashSale\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageFlashSale.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageHelixGallery\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageHelixGallery.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageHelixGallery.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageHelixGallery.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageHelixGallery\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageHelixGallery.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageHeroSlider\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageHeroSlider.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageHeroSlider.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageHeroSlider.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageHeroSlider\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageHeroSlider.php
+
+		-
+			message: '#^Variable \$linkType on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageHeroSlider.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageNewRelease\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$images\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$min_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Product\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageNewRelease\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageNewRelease.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManagePartnerCafes\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManagePartnerCafes.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManagePartnerCafes.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManagePartnerCafes.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManagePartnerCafes\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManagePartnerCafes.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageRecommendedProducts\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageRecommendedProducts.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageRecommendedProducts.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageRecommendedProducts\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageRecommendedProducts.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageReelsSettings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageReelsSettings.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageReelsSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageReelsSettings\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageReelsSettings.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageSanubariPlaces\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageSanubariPlaces.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageSanubariPlaces.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageSanubariPlaces.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageSanubariPlaces\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageSanubariPlaces.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageTasteRecommendations\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageTasteRecommendations.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageTasteRecommendations.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageTasteRecommendations.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageTasteRecommendations\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageTasteRecommendations.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\HalamanAwal\\ManageVideoStats\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/HalamanAwal/ManageVideoStats.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageVideoStats.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\HalamanAwal\\ManageVideoStats\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/HalamanAwal/ManageVideoStats.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageBrewGuideSettings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/ManageBrewGuideSettings.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/ManageBrewGuideSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageBrewGuideSettings\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageBrewGuideSettings.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageByobSettings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/ManageByobSettings.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 2
+			path: app/Filament/Pages/ManageByobSettings.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/ManageByobSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageByobSettings\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageByobSettings.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageContentPages\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 16
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageContentPages\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''caption'' on array\{image\: ''https\://images…'', caption\: ''Batch roasting…''\}\|array\{image\: ''https\://images…'', caption\: ''Sesi cupping…''\}\|array\{image\: ''https\://images…'', caption\: ''Setup mesin…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''caption'' on array\{image\: ''https\://images…'', caption\: ''Cupping Session…''\}\|array\{image\: ''https\://images…'', caption\: ''Green Bean Pilihan…''\}\|array\{image\: ''https\://images…'', caption\: ''Pemeriksaan Visual…''\}\|array\{image\: ''https\://images…'', caption\: ''Pendinginan Cepat …''\}\|array\{image\: ''https\://images…'', caption\: ''Pengemasan Biji…''\}\|array\{image\: ''https\://images…'', caption\: ''Proses Sangrai Biji…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''caption'' on array\{image\: ''https\://images…'', caption\: ''Diskusi Dialing…''\}\|array\{image\: ''https\://images…'', caption\: ''Sesi Cupping…''\}\|array\{image\: ''https\://images…'', caption\: ''Workshop Manual…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''caption'' on array\{image\: ''https\://images…'', caption\: ''Eksplorasi Rasa…''\}\|array\{image\: ''https\://images…'', caption\: ''Koleksi Biji Kopi…''\}\|array\{image\: ''https\://images…'', caption\: ''Mesin Roasting…''\}\|array\{image\: ''https\://images…'', caption\: ''Showroom Mesin…''\}\|array\{image\: ''https\://images…'', caption\: ''Slow Bar Manual…''\}\|array\{image\: ''https\://images…'', caption\: ''Suasana Nyaman…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''caption'' on array\{image\: ''https\://images…'', caption\: ''Latihan Teknik Milk…''\}\|array\{image\: ''https\://images…'', caption\: ''Praktik Kalibrasi…''\}\|array\{image\: ''https\://images…'', caption\: ''Sesi Cupping…''\}\|array\{image\: ''https\://images…'', caption\: ''Simulasi Alur Kerja…''\}\|array\{image\: ''https\://images…'', caption\: ''Suasana Belajar…''\}\|array\{image\: ''https\://images…'', caption\: ''Teknik Manual Brew…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''description'' on array\{title\: ''Custom Roast Profile'', description\: ''Kembangkan profil…''\}\|array\{title\: ''Harga Grosir…'', description\: ''Potongan harga…''\}\|array\{title\: ''Paket Mesin &…'', description\: ''Bundling mesin…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''image'' on array\{image\: ''https\://images…'', caption\: ''Batch roasting…''\}\|array\{image\: ''https\://images…'', caption\: ''Sesi cupping…''\}\|array\{image\: ''https\://images…'', caption\: ''Setup mesin…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Offset ''title'' on array\{title\: ''Custom Roast Profile'', description\: ''Kembangkan profil…''\}\|array\{title\: ''Harga Grosir…'', description\: ''Potongan harga…''\}\|array\{title\: ''Paket Mesin &…'', description\: ''Bundling mesin…''\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Filament/Pages/ManageContentPages.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageDesktopMegaMenu\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Filament/Pages/ManageDesktopMegaMenu.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 2
+			path: app/Filament/Pages/ManageDesktopMegaMenu.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageDesktopMegaMenu\:\:getDefaultCategories\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageDesktopMegaMenu.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageDesktopMegaMenu\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageDesktopMegaMenu.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageDesktopMegaMenu\:\:getIconOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageDesktopMegaMenu.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageDesktopMegaMenu\:\:getPresetUrlOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageDesktopMegaMenu.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageFooterSettings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/ManageFooterSettings.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/ManageFooterSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageFooterSettings\:\:defaultFooterSettings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageFooterSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageFooterSettings\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageFooterSettings.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageGeneralSettings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/ManageGeneralSettings.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Pages/ManageGeneralSettings.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Filament/Pages/ManageGeneralSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageGeneralSettings\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageGeneralSettings.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageSeriesSettings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Pages/ManageSeriesSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageSeriesSettings\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageSeriesSettings.php
+
+		-
+			message: '#^Access to an undefined property App\\Filament\\Pages\\ManageShippingSettings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 4
+			path: app/Filament/Pages/ManageShippingSettings.php
+
+		-
+			message: '#^Method App\\Filament\\Pages\\ManageShippingSettings\:\:getFormActions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Pages/ManageShippingSettings.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Categories/Pages/CreateCategory.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Categories/Pages/EditCategory.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Events/Pages/CreateEvent.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Events/Pages/EditEvent.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Filament/Resources/Events/Tables/EventsTable.php
+
+		-
+			message: '#^Parameter \#2 \$direction of method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:orderBy\(\) expects ''asc''\|''desc''\|SortDirection, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Filament/Resources/Events/Tables/EventsTable.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:webOnly\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Filament/Resources/Orders/OrderResource.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Orders/Pages/EditOrder.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Resources/Orders/Schemas/OrderForm.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Posts/Pages/CreatePost.php
+
+		-
+			message: '#^Cannot access property \$published_at on Illuminate\\Database\\Eloquent\\Model\|int\|string\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: app/Filament/Resources/Posts/Pages/EditPost.php
+
+		-
+			message: '#^Cannot access property \$slug on Illuminate\\Database\\Eloquent\\Model\|int\|string\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Filament/Resources/Posts/Pages/EditPost.php
+
+		-
+			message: '#^Cannot access property \$type on Illuminate\\Database\\Eloquent\\Model\|int\|string\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Filament/Resources/Posts/Pages/EditPost.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Posts/Pages/EditPost.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Filament/Resources/Posts/Tables/PostsTable.php
+
+		-
+			message: '#^Parameter \#2 \$direction of method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:orderBy\(\) expects ''asc''\|''desc''\|SortDirection, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Filament/Resources/Posts/Tables/PostsTable.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Products/Pages/CreateProduct.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Resources/Products/Pages/EditProduct.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Filament/Resources/Products/Pages/EditProduct.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/Products/Pages/EditProduct.php
+
+		-
+			message: '#^Anonymous function never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Filament/Resources/Products/Schemas/ProductForm.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Filament/Resources/Products/Tables/ProductsTable.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Filament/Resources/Products/Tables/ProductsTable.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>image" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Filament/Resources/Products/Tables/ProductsTable.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>path" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 3
+			path: app/Filament/Resources/Products/Tables/ProductsTable.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/VideoReels/Pages/CreateVideoReel.php
+
+		-
+			message: '#^Cannot call method getRawOriginal\(\) on Illuminate\\Database\\Eloquent\\Model\|int\|string\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Filament/Resources/VideoReels/Pages/EditVideoReel.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_ends_with expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Filament/Resources/VideoReels/Pages/EditVideoReel.php
+
+		-
+			message: '#^Parameter \#1 \$chart of method Filament\\Widgets\\StatsOverviewWidget\\Stat\:\:chart\(\) expects array\<float\>\|Illuminate\\Contracts\\Support\\Arrayable\|null, list\<int\<0, max\>\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Filament/Widgets/RealtimeVisitorOverview.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$custom_notes\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$grind_option\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$quantity\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$subtotal\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$variant_label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\Order\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\Order\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 1
+			path: app/Http/Controllers/AccountController.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Http/Controllers/Admin/HelixGalleryController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Auth\\GoogleAuthController\:\:redirect\(\) should return Illuminate\\Http\\RedirectResponse but returns Symfony\\Component\\HttpFoundation\\RedirectResponse\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Controllers/Auth/GoogleAuthController.php
+
+		-
+			message: '#^Negated boolean expression is always false\.$#'
+			identifier: booleanNot.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Auth/GoogleAuthController.php
+
+		-
+			message: '#^Property App\\Models\\User\:\:\$email_verified_at \(Illuminate\\Support\\Carbon\|null\) does not accept Carbon\\CarbonImmutable\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Http/Controllers/Auth/GoogleAuthController.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Http/Controllers/BackInStockController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>id" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/BackInStockController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>min_price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/BackInStockController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>name" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/BackInStockController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>short_description" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/BackInStockController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>slug" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/BackInStockController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CartController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CartController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$product\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CartController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CartController.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Http/Controllers/CartController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$cost_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$product\.$#'
+			identifier: property.notFound
+			count: 5
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$product_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$stock_status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$weight_grams\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$custom_notes\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$grind_option\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_variant_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$quantity\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$stock_status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$subtotal\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$variant_label\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 3
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Parameter \#1 \$num of function number_format expects float, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 2
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>image_url" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>sku" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>slug" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/CheckoutController.php
+
+		-
+			message: '#^Unable to resolve the template type TKey in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Http/Controllers/ContentController.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Http/Controllers/ContentController.php
+
+		-
+			message: '#^Offset ''category'' on array\{id\: mixed, name\: mixed, slug\: mixed, category\: mixed, price\: int, original_price\: int, discount_percentage\: 20\|float, image\: mixed, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 8
+			path: app/Http/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Offset ''discount_percentage'' on array\{id\: mixed, name\: mixed, slug\: mixed, category\: mixed, price\: int, original_price\: int, discount_percentage\: 20\|float, image\: mixed, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Http/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>min_price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>name" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>short_description" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>slug" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Http/Controllers/NewReleaseController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>id" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/NewReleaseController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>min_price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/NewReleaseController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>name" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/NewReleaseController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>short_description" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/NewReleaseController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>slug" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/NewReleaseController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\PosAuthController\:\:downloadApk\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/PosAuthController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\PosAuthController\:\:downloadPc\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/PosAuthController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Order\:\:\$discount_amount\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\OrderItem\:\:\$total_qty\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\OrderItem\:\:\$total_rev\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$cost_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\ProductVariant\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\ProductVariant\>\:\:\$product\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\|Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Product\>\|Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$cost_price\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$image_url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 8
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$original_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 4
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_name\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$quantity\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$sku\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$stock_status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$subtotal\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$url\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$variant_label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$weight_grams\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\PosController\:\:calculateProfitLossData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\PosController\:\:showInvoice\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_values contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$array of function uasort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\PosCashFlow\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 3
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\PosHeldOrder\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\Product\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: array\{id\: int\<0, max\>, label\: string, price\: float, original_price\: float\|null, cost_price\: float\|null, weight_grams\: int, sku\: string\|null, stock_status\: string\}, Closure\(App\\Models\\ProductVariant\)\: array\{id\: int\<0, max\>, label\: string, price\: float, original_price\: float\|null, cost_price\: float\|null, weight_grams\: int, sku\: string\|null, stock_status\: string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: array\{product_name\: string, variant_label\: string, price\: float, quantity\: int, subtotal\: float\}, Closure\(App\\Models\\OrderItem\)\: array\{product_name\: string, variant_label\: string, price\: float, quantity\: int, subtotal\: float\} given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function uasort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Return type of call to function array_values contains unresolvable type\.$#'
+			identifier: function.unresolvableReturnType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\PosCashFlow\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 3
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\PosHeldOrder\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\Product\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Support\\Collection\<int,array\<string, mixed\>\>\:\:values\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between mixed and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 4
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Ternary operator condition is always true\.$#'
+			identifier: ternary.alwaysTrue
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Unable to resolve the template type TKey in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>cost_price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>image_url" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>label" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>name" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 12
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>product" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>role" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>url" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: app/Http/Controllers/PosController.php
+
+		-
+			message: '#^Parameter \#1 \$order of static method App\\Services\\ShippingService\:\:requestCourierPickup\(\) expects App\\Models\\Order, App\\Models\\Order\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Order\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/ShippingController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$weight_grams\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/ShopController.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Http/Controllers/ShopController.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 2
+			path: app/Http/Controllers/ShopController.php
+
+		-
+			message: '#^Constant App\\Http\\Middleware\\EnsurePosRole\:\:ALLOWED_ROLES is unused\.$#'
+			identifier: classConstant.unused
+			count: 1
+			path: app/Http/Middleware/EnsurePosRole.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: app/Http/Middleware/HandleInertiaRequests.php
+
+		-
+			message: '#^Call to function str_contains\(\) with non\-falsy\-string and ''Chrome'' will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Http/Middleware/TrackWebsiteVisitor.php
+
+		-
+			message: '#^Parameter \#2 \$value of method Illuminate\\Cookie\\CookieJar\:\:forever\(\) expects string, array\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Middleware/TrackWebsiteVisitor.php
+
+		-
+			message: '#^Part \$visitorId \(array\|string\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Http/Middleware/TrackWebsiteVisitor.php
+
+		-
+			message: '#^Class App\\Models\\Category uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Category.php
+
+		-
+			message: '#^Method App\\Models\\Category\:\:children\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Category.php
+
+		-
+			message: '#^Method App\\Models\\Category\:\:parent\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Category.php
+
+		-
+			message: '#^Method App\\Models\\Category\:\:products\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany does not specify its types\: TRelatedModel, TDeclaringModel, TPivotModel, TAccessor \(2\-4 required\)$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Category.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Models/Event.php
+
+		-
+			message: '#^Cannot call method translatedFormat\(\) on Carbon\\CarbonImmutable\|string\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Models/Event.php
+
+		-
+			message: '#^Method App\\Models\\Event\:\:scopeUpcoming\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Event.php
+
+		-
+			message: '#^Method App\\Models\\Event\:\:scopeUpcoming\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Event.php
+
+		-
+			message: '#^Class App\\Models\\MegaMenu uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/MegaMenu.php
+
+		-
+			message: '#^Method App\\Models\\MegaMenu\:\:items\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/MegaMenu.php
+
+		-
+			message: '#^Class App\\Models\\MegaMenuItem uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/MegaMenuItem.php
+
+		-
+			message: '#^Method App\\Models\\MegaMenuItem\:\:megaMenu\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/MegaMenuItem.php
+
+		-
+			message: '#^Class App\\Models\\Order uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:items\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopePosOnly\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopePosOnly\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeWebOnly\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:scopeWebOnly\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Method App\\Models\\Order\:\:user\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Order.php
+
+		-
+			message: '#^Class App\\Models\\OrderItem uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderItem.php
+
+		-
+			message: '#^Method App\\Models\\OrderItem\:\:order\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderItem.php
+
+		-
+			message: '#^Method App\\Models\\OrderItem\:\:product\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderItem.php
+
+		-
+			message: '#^Method App\\Models\\OrderItem\:\:variant\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/OrderItem.php
+
+		-
+			message: '#^Class App\\Models\\PosCashFlow uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PosCashFlow.php
+
+		-
+			message: '#^Method App\\Models\\PosCashFlow\:\:user\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PosCashFlow.php
+
+		-
+			message: '#^Class App\\Models\\PosHeldOrder uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PosHeldOrder.php
+
+		-
+			message: '#^Method App\\Models\\PosHeldOrder\:\:scopeHolding\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/PosHeldOrder.php
+
+		-
+			message: '#^Method App\\Models\\PosHeldOrder\:\:scopeHolding\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/PosHeldOrder.php
+
+		-
+			message: '#^Method App\\Models\\PosHeldOrder\:\:user\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/PosHeldOrder.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Class App\\Models\\Post uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeArticles\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeArticles\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeEvents\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeEvents\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeGuides\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeGuides\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopePublished\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopePublished\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeUpcoming\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:scopeUpcoming\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Method App\\Models\\Post\:\:setContentAttribute\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/Post.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$alt\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$image\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$is_primary\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$stock_status\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$weight_grams\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Models/Product.php
+
+		-
+			message: '#^Class App\\Models\\Product uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:categories\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany does not specify its types\: TRelatedModel, TDeclaringModel, TPivotModel, TAccessor \(2\-4 required\)$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:images\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:primaryImage\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasOne does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeActive\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeActive\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeBySeries\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeBySeries\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeFeatured\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeFeatured\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:variants\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Offset ''name'' on array\{name\: string, slug\: string, description\?\: string, badge_color\?\: string, is_active\?\: bool\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Offset ''slug'' on array\{name\: string, slug\: string, description\?\: string, badge_color\?\: string, is_active\?\: bool\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 3
+			path: app/Models/Product.php
+
+		-
+			message: '#^Property ''price_per_10g'' is not a computed property, remove from \$appends\.$#'
+			identifier: rules.modelAppends
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Property App\\Models\\Product\:\:\$activeFlashSaleIdentifiers type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Class App\\Models\\ProductImage uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductImage.php
+
+		-
+			message: '#^Method App\\Models\\ProductImage\:\:product\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductImage.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:syncPricesFromVariants\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: app/Models/ProductVariant.php
+
+		-
+			message: '#^Class App\\Models\\ProductVariant uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductVariant.php
+
+		-
+			message: '#^Method App\\Models\\ProductVariant\:\:product\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ProductVariant.php
+
+		-
+			message: '#^Method App\\Models\\ProductVariant\:\:setBasePriceAttribute\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/ProductVariant.php
+
+		-
+			message: '#^Method App\\Models\\ProductVariant\:\:setHppAttribute\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/ProductVariant.php
+
+		-
+			message: '#^Class App\\Models\\Setting uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/Setting.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:orders\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Class App\\Models\\VideoReel uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/VideoReel.php
+
+		-
+			message: '#^Method App\\Models\\VideoReel\:\:getThumbnailAttribute\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/VideoReel.php
+
+		-
+			message: '#^Method App\\Models\\VideoReel\:\:scopeActive\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/VideoReel.php
+
+		-
+			message: '#^Method App\\Models\\VideoReel\:\:scopeActive\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/VideoReel.php
+
+		-
+			message: '#^Method App\\Models\\VideoReel\:\:scopeOrdered\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/VideoReel.php
+
+		-
+			message: '#^Method App\\Models\\VideoReel\:\:scopeOrdered\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/VideoReel.php
+
+		-
+			message: '#^Class App\\Models\\WebsiteVisit uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeLastDays\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeLastDays\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeOnline\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeOnline\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeToday\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeToday\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeYesterday\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Models\\WebsiteVisit\:\:scopeYesterday\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/WebsiteVisit.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildDailySummarySheet\(\) has parameter \$dailySummary with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildDailySummarySheet\(\) has parameter \$summary with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildDailySummarySheet\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildExpensesSheet\(\) has parameter \$expenses with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildExpensesSheet\(\) has parameter \$summary with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildExpensesSheet\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildProductsSheet\(\) has parameter \$products with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildProductsSheet\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildSummarySheet\(\) has parameter \$summary with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildSummarySheet\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildTransactionsSheet\(\) has parameter \$transactions with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:buildTransactionsSheet\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Method App\\Services\\PosProfitLossExcelService\:\:generate\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Unable to resolve the template type TKey in call to function collect$#'
+			identifier: argument.templateType
+			count: 4
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function collect$#'
+			identifier: argument.templateType
+			count: 4
+			path: app/Services/PosProfitLossExcelService.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Order\:\:\$discount_amount\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$cost_price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$price\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_name\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$quantity\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$subtotal\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$variant_label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_values contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Parameter \#1 \$array of function uasort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Parameter \#1 \$array of function usort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,App\\Models\\PosCashFlow\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 2
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function uasort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function usort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Return type of call to function array_values contains unresolvable type\.$#'
+			identifier: function.unresolvableReturnType
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Support\\Collection\<int,App\\Models\\PosCashFlow\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 2
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Support\\Collection\<int,array\<string, mixed\>\>\:\:all\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 2
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Support\\Collection\<int,array\<string, mixed\>\>\:\:values\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 2
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>cost_price" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>name" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: app/Services/ProfitLossService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$custom_notes\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$grind_option\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$product_name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$quantity\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$variant_label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 2
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Called ''pluck'' on Laravel collection, but could have been retrieved as a query\.$#'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 2
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:calculateBuiltInRates\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:calculateBuiltInRates\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:calculateGoSendRates\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:calculateGoSendRates\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:calculateRates\(\) has parameter \$payload with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:calculateRates\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:cancelCourierPickup\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:createShipmentOrder\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:createShipmentOrder\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:formatCourierRate\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:formatCourierRate\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getAvailableCouriers\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getBuiltInCities\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getBuiltInProvinces\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getBuiltInSubdistricts\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getCities\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getConfig\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getPrintableLabelData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getProvinces\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:getSubdistricts\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:qualifiesForFreeShipping\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:requestCourierPickup\(\) has parameter \$pickupDetails with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:requestCourierPickup\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:testConnection\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:testShippingDeliveryConnection\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:trackWaybill\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:tryLiveRajaOngkir\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Method App\\Services\\ShippingService\:\:tryLiveRajaOngkir\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Return type of call to method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
+			count: 1
+			path: app/Services/ShippingService.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 5
+			path: app/Services/WhatsAppService.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''pages'' \(''pages'', ''pages''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: config/layup.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: database/migrations/2026_11_06_042800_remove_catatan_roaster_badge_from_editorial_items.php

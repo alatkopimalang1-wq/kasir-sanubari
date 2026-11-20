@@ -1,0 +1,39 @@
+{
+  "name": "sanubari-pos-desktop",
+  "version": "1.0.0",
+  "description": "Sanubari POS Desktop Application for Windows PC",
+  "main": "main.js",
+  "author": "Sanubari Roastery",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win nsis portable"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "png-to-ico": "^3.0.2"
+  },
+  "build": {
+    "appId": "id.co.sanubari.pos.desktop",
+    "productName": "Sanubari POS",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Sanubari POS"
+    }
+  }
+}

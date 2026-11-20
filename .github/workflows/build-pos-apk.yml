@@ -1,0 +1,63 @@
+name: Build Android POS APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'android/**'
+      - '.github/workflows/build-pos-apk.yml'
+
+jobs:
+  build-apk:
+    name: Build Sanubari POS APK
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Accept Android SDK Licenses
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
+      - name: Build APK with Gradle
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Copy and Rename APK
+        run: |
+          mkdir -p build-output
+          cp android/app/build/outputs/apk/debug/app-debug.apk build-output/Sanubari-POS.apk
+          echo "APK successfully built:"
+          ls -lh build-output/
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sanubari-POS-APK
+          path: build-output/Sanubari-POS.apk
+          retention-days: 30
+
+      - name: Publish APK to Latest Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: pos-apk-latest
+          name: Sanubari POS Android APK (Latest v2.0 - Native Bluetooth)
+          files: build-output/Sanubari-POS.apk
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
