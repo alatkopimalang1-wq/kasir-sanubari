@@ -11684,41 +11684,23 @@ function PosContent({
                         </div>
 
                         <div className="space-y-2">
-                            <div className="grid grid-cols-2 gap-2">
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        printThermalWeb(
-                                            completedReceipt,
-                                            printerForm,
-                                        )
-                                    }
-                                    className="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-xs font-bold text-stone-800 shadow-2xs transition hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:hover:bg-stone-700"
-                                >
-                                    <Printer className="h-4 w-4 text-brand-700 dark:text-amber-400" />
-                                    <span>
-                                        Cetak USB ({printerForm.paper_width})
-                                    </span>
-                                </button>
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        handleBluetoothPrint(completedReceipt)
-                                    }
-                                    disabled={isBtPrinting}
-                                    className="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2.5 text-xs font-bold text-emerald-900 shadow-2xs transition hover:bg-emerald-100 disabled:opacity-50 dark:border-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-200 dark:hover:bg-emerald-900/60"
-                                >
-                                    <Smartphone className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
-                                    <span className="truncate">
-                                        {isBtPrinting
-                                            ? 'Mencetak...'
-                                            : connectedBtPrinter
-                                              ? `Cetak BT (${connectedBtPrinter.name})`
-                                              : 'Bluetooth Print'}
-                                    </span>
-                                </button>
-                            </div>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    handleBluetoothPrint(completedReceipt)
+                                }
+                                disabled={isBtPrinting}
+                                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-xs font-bold text-emerald-900 shadow-2xs transition hover:bg-emerald-100 active:scale-95 disabled:opacity-50 dark:border-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-200 dark:hover:bg-emerald-900/60"
+                            >
+                                <Smartphone className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+                                <span className="truncate">
+                                    {isBtPrinting
+                                        ? 'Mencetak Struk...'
+                                        : connectedBtPrinter
+                                          ? `Cetak Struk Bluetooth (${connectedBtPrinter.name})`
+                                          : 'Cetak Struk Bluetooth'}
+                                </span>
+                            </button>
 
                             {connectedBtPrinter && (
                                 <div className="flex items-center justify-between rounded-lg border border-emerald-200/80 bg-emerald-50/60 px-2.5 py-1.5 text-[11px] dark:border-emerald-800/50 dark:bg-emerald-950/30">
