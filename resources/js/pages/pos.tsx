@@ -5059,10 +5059,6 @@ function PosContent({
                                                         <span className="py-0.2 absolute top-1 left-1 rounded-md border border-emerald-500 bg-emerald-950/95 px-1.5 text-[8px] font-black tracking-wider text-emerald-300 uppercase shadow-sm sm:top-1.5 sm:left-1.5 sm:px-2 sm:py-0.5 sm:text-[9px]">
                                                             🎨 Racik Blend
                                                         </span>
-                                                    ) : (product.series_label || product.series) ? (
-                                                        <span className="py-0.2 absolute top-1 left-1 rounded border border-brand-800 bg-brand-950/90 px-1.5 text-[8px] font-bold tracking-wider text-accent-copper-light uppercase sm:top-1.5 sm:left-1.5 sm:px-2 sm:py-0.5 sm:text-[9px]">
-                                                            {product.series_label || product.series}
-                                                        </span>
                                                     ) : null}
                                                     {product.is_out_of_stock ? (
                                                         <div className="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-stone-900/80">
@@ -6354,11 +6350,6 @@ function PosContent({
                                         <div className="flex min-w-0 flex-1 flex-col justify-between">
                                             <div>
                                                 <div className="flex items-center gap-1.5">
-                                                    {(p.series_label || p.series) && (
-                                                        <span className="shrink-0 rounded border border-brand-800 bg-brand-950/90 px-1 py-0.2 text-[8px] font-bold tracking-wider text-accent-copper-light uppercase dark:border-stone-700 dark:bg-stone-800">
-                                                            {p.series_label || p.series}
-                                                        </span>
-                                                    )}
                                                     <div
                                                         className="truncate font-bold text-stone-900 dark:text-white"
                                                         title={p.name}
