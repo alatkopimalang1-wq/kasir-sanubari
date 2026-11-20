@@ -2198,24 +2198,33 @@ class PosController extends Controller
                     $imageUrl = '/brand/logo-circle.png';
                 }
 
+                $firstCat = $product->categories->first();
+                $firstCatName = $firstCat
+                    ? ($firstCat->getTranslation('name', 'id') ?? (is_array($firstCat->name) ? ($firstCat->name['id'] ?? reset($firstCat->name)) : $firstCat->name) ?? $firstCat->slug)
+                    : null;
+
+                $prodName = $product->getTranslation('name', 'id')
+                    ?? (is_array($product->name) ? ($product->name['id'] ?? reset($product->name)) : $product->name)
+                    ?? $product->slug;
+
                 return [
                     'id' => $product->id,
-                    'name' => $product->name,
+                    'name' => (string) $prodName,
                     'slug' => $product->slug,
                     'series' => $product->series,
                     'series_label' => $product->series_label,
                     'series_badge_color' => Product::getSeriesBadgeColor($product->series),
-                    'category_id' => $product->categories->first()?->id,
-                    'category_name' => $product->categories->first()?->name,
-                    'category_slug' => $product->categories->first()?->slug,
+                    'category_id' => $firstCat?->id,
+                    'category_name' => $firstCatName ? (string) $firstCatName : null,
+                    'category_slug' => $firstCat?->slug,
                     'category_ids' => $product->categories->pluck('id')->toArray(),
                     'image' => $imageUrl,
                     'price' => $minPrice,
                     'min_price' => $minPrice,
                     'max_price' => $maxPrice,
-                    'description' => $product->getTranslation('description', 'id')
+                    'description' => (string) ($product->getTranslation('description', 'id')
                         ?? (is_array($product->description) ? ($product->description['id'] ?? reset($product->description)) : $product->description)
-                        ?? '',
+                        ?? ''),
                     'stock_status' => $product->stock_status,
                     'is_out_of_stock' => (bool) $product->is_out_of_stock,
                     'variants' => $product->variants->map(fn (ProductVariant $v) => [

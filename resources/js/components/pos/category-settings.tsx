@@ -26,6 +26,15 @@ interface CategorySettingsProps {
     showToast: (message: string) => void;
 }
 
+export const getCategoryLabel = (name: any): string => {
+    if (!name) return '';
+    if (typeof name === 'string') return name;
+    if (typeof name === 'object') {
+        return name.id || name.en || Object.values(name)[0] || '';
+    }
+    return String(name);
+};
+
 export const CategorySettings: React.FC<CategorySettingsProps> = ({
     categories,
     onCategoriesChange,
@@ -47,7 +56,7 @@ export const CategorySettings: React.FC<CategorySettingsProps> = ({
         if (!query) return categories;
         return categories.filter(
             (c) =>
-                c.name.toLowerCase().includes(query) ||
+                getCategoryLabel(c.name).toLowerCase().includes(query) ||
                 c.slug.toLowerCase().includes(query) ||
                 (c.description && c.description.toLowerCase().includes(query)),
         );
@@ -55,7 +64,7 @@ export const CategorySettings: React.FC<CategorySettingsProps> = ({
 
     const handleStartEditCategory = (cat: PosCategoryItem) => {
         setEditingCategoryId(cat.id);
-        setCategoryName(cat.name);
+        setCategoryName(getCategoryLabel(cat.name));
         setCategorySlug(cat.slug);
         setCategoryDescription(cat.description || '');
         setCategoryIcon(cat.icon || '');
@@ -438,7 +447,7 @@ export const CategorySettings: React.FC<CategorySettingsProps> = ({
                                     <div className="min-w-0 flex-1 space-y-1">
                                         <div className="flex flex-wrap items-center gap-2">
                                             <span className="font-bold text-stone-900 dark:text-white">
-                                                {cat.name}
+                                                {getCategoryLabel(cat.name)}
                                             </span>
                                             <span className="rounded bg-stone-200/80 px-1.5 py-0.5 font-mono text-[10px] text-stone-600 dark:bg-stone-700 dark:text-stone-300">
                                                 {cat.slug}

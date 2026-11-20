@@ -475,7 +475,35 @@ const POS_SHIPPING_COURIER_STORAGE_KEY = 'sanubari_pos_shipping_courier';
 const POS_CUSTOMER_ADDRESS_STORAGE_KEY = 'sanubari_pos_customer_address';
 const POS_OFFLINE_ORDERS_STORAGE_KEY = 'sanubari_pos_offline_orders';
 const POS_MANUAL_OFFLINE_STORAGE_KEY = 'sanubari_pos_manual_offline';
-const POS_CACHED_CATALOG_STORAGE_KEY = 'sanubari_pos_cached_catalog_v5';
+const POS_CACHED_CATALOG_STORAGE_KEY = 'sanubari_pos_cached_catalog_v6';
+
+export const normalizePosCategory = (c: any): Category => {
+    let name = '';
+    if (typeof c?.name === 'string') {
+        name = c.name;
+    } else if (c?.name && typeof c.name === 'object') {
+        name = c.name.id || c.name.en || Object.values(c.name)[0] || '';
+    } else {
+        name = c?.slug || '';
+    }
+
+    let description = '';
+    if (typeof c?.description === 'string') {
+        description = c.description;
+    } else if (c?.description && typeof c.description === 'object') {
+        description = c.description.id || c.description.en || Object.values(c.description)[0] || '';
+    }
+
+    return {
+        ...c,
+        id: Number(c?.id) || 0,
+        name: String(name),
+        slug: String(c?.slug || ''),
+        description: String(description),
+        sort_order: Number(c?.sort_order) || 0,
+        products_count: Number(c?.products_count) || 0,
+    };
+};
 
 export const normalizePosProduct = (p: any): Product => {
     const variants = Array.isArray(p.variants)
@@ -513,8 +541,26 @@ export const normalizePosProduct = (p: any): Product => {
         img = '/brand/logo-circle.png';
     }
 
+    let catName = null;
+    if (typeof p.category_name === 'string') {
+        catName = p.category_name;
+    } else if (p.category_name && typeof p.category_name === 'object') {
+        catName = p.category_name.id || p.category_name.en || Object.values(p.category_name)[0] || null;
+    }
+
+    let prodName = '';
+    if (typeof p.name === 'string') {
+        prodName = p.name;
+    } else if (p.name && typeof p.name === 'object') {
+        prodName = p.name.id || p.name.en || Object.values(p.name)[0] || '';
+    } else {
+        prodName = String(p.slug || '');
+    }
+
     return {
         ...p,
+        name: prodName,
+        category_name: catName,
         min_price: minPrice,
         max_price: maxPrice,
         image: img,
@@ -656,6 +702,10 @@ function PosContent({
             try {
                 // Clear any legacy broken cache key
                 localStorage.removeItem('sanubari_pos_cached_catalog_v1');
+                localStorage.removeItem('sanubari_pos_cached_catalog_v2');
+                localStorage.removeItem('sanubari_pos_cached_catalog_v3');
+                localStorage.removeItem('sanubari_pos_cached_catalog_v4');
+                localStorage.removeItem('sanubari_pos_cached_catalog_v5');
 
                 // 1. FASTEST PATH: Read from persistent local cache for instant 0ms load
                 const cached = localStorage.getItem(
@@ -694,18 +744,18 @@ function PosContent({
                         Array.isArray(parsed?.categories) &&
                         parsed.categories.length > 0
                     ) {
-                        return parsed.categories;
+                        return parsed.categories.map(normalizePosCategory);
                     }
                 }
 
                 if (Array.isArray(initialCategories) && initialCategories.length > 0) {
-                    return initialCategories;
+                    return initialCategories.map(normalizePosCategory);
                 }
             } catch (e) {
                 console.error('Failed reading cached categories:', e);
             }
         }
-        return initialCategories || [];
+        return Array.isArray(initialCategories) ? initialCategories.map(normalizePosCategory) : [];
     });
 
     // Background sync from server props: only update if data actually changed
@@ -4819,7 +4869,7 @@ function PosContent({
                                                         : 'border border-stone-200 bg-white text-stone-600 hover:bg-stone-50 hover:text-stone-900 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700 dark:hover:text-white'
                                                 }`}
                                             >
-                                                {cat.name} ({count})
+                                                {typeof cat.name === 'object' ? ((cat.name as any)?.id || (cat.name as any)?.en || '') : cat.name} ({count})
                                             </button>
                                         );
                                     })}
@@ -14737,11 +14787,13 @@ class PosErrorBoundary extends React.Component<
 
     handleReset = () => {
         try {
-            localStorage.removeItem('sanubari_pos_cached_catalog_v1');
-            localStorage.removeItem('pos_cart_items');
-            localStorage.removeItem('pos_cart_discount');
-            localStorage.removeItem('pos_offline_orders_v1');
-            localStorage.removeItem('sanubari_pos_manual_offline_v1');
+            // Clear all POS cache keys
+            Object.keys(localStorage).forEach((k) => {
+                if (k.includes('pos') || k.includes('sanubari')) {
+                    localStorage.removeItem(k);
+                }
+            });
+            sessionStorage.clear();
             if ('caches' in window) {
                 caches.keys().then((names) => {
                     names.forEach((name) => caches.delete(name));

@@ -18,6 +18,15 @@ import {
 } from 'lucide-react';
 import { PosCategoryItem } from './category-settings';
 
+export const getSafeCategoryName = (cat: any): string => {
+    if (!cat) return '';
+    if (typeof cat === 'string') return cat;
+    if (typeof cat === 'object') {
+        return cat.id || cat.en || cat.name || Object.values(cat)[0] || '';
+    }
+    return String(cat);
+};
+
 export interface PosProductVariant {
     id?: number;
     label: string;
@@ -373,7 +382,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
             list = list.filter(
                 (p) =>
                     p.name.toLowerCase().includes(q) ||
-                    (p.category_name && p.category_name.toLowerCase().includes(q)) ||
+                    (p.category_name && getSafeCategoryName(p.category_name).toLowerCase().includes(q)) ||
                     (p.description && p.description.toLowerCase().includes(q)) ||
                     p.variants.some((v) => v.label.toLowerCase().includes(q)),
             );
@@ -515,7 +524,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                 <option value="">-- Tanpa Kategori / Umum --</option>
                                 {categories.map((c) => (
                                     <option key={c.id} value={c.id}>
-                                        {c.name}
+                                        {getSafeCategoryName(c.name)}
                                     </option>
                                 ))}
                             </select>
@@ -789,7 +798,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                             <option value="all">Semua Kategori</option>
                             {categories.map((c) => (
                                 <option key={c.id} value={c.id}>
-                                    {c.name}
+                                    {getSafeCategoryName(c.name)}
                                 </option>
                             ))}
                         </select>
@@ -853,11 +862,11 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                                     <span className="font-bold text-stone-900 dark:text-white">
                                                         {product.name}
                                                     </span>
-                                                    {product.category_name && (
+                                                    {getSafeCategoryName(product.category_name) ? (
                                                         <span className="rounded-full bg-stone-100 px-2 py-0.5 text-[10px] font-semibold text-stone-600 dark:bg-stone-800 dark:text-stone-300">
-                                                            {product.category_name}
+                                                            {getSafeCategoryName(product.category_name)}
                                                         </span>
-                                                    )}
+                                                    ) : null}
                                                 </div>
 
                                                 {/* Varian Prices */}
