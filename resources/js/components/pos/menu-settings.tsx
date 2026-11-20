@@ -13,7 +13,6 @@ import {
     XCircle,
     ImageIcon,
     SlidersHorizontal,
-    Sparkles,
 } from 'lucide-react';
 import { PosCategoryItem } from './category-settings';
 
@@ -103,25 +102,6 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
     const formatRp = (val: number | string) => {
         const num = Number(val) || 0;
         return num.toLocaleString('id-ID');
-    };
-
-    // Quick Cafe Presets
-    const applyPreset = (type: 'beverage_hot_ice' | 'beverage_size' | 'single_portion') => {
-        if (type === 'beverage_hot_ice') {
-            setVariants([
-                { label: 'Hot', price: variants[0]?.price || '', cost_price: 0, stock_status: 'in_stock' },
-                { label: 'Ice', price: variants[0]?.price ? Number(variants[0].price) + 2000 : '', cost_price: 0, stock_status: 'in_stock' },
-            ]);
-        } else if (type === 'beverage_size') {
-            setVariants([
-                { label: 'Reguler', price: variants[0]?.price || '', cost_price: 0, stock_status: 'in_stock' },
-                { label: 'Large', price: variants[0]?.price ? Number(variants[0].price) + 4000 : '', cost_price: 0, stock_status: 'in_stock' },
-            ]);
-        } else if (type === 'single_portion') {
-            setVariants([
-                { label: '1 Porsi', price: variants[0]?.price || '', cost_price: 0, stock_status: 'in_stock' },
-            ]);
-        }
     };
 
     const handleAddVariantRow = () => {
@@ -460,38 +440,6 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-                        {/* Preset Varian Cepat */}
-                        {!editingProductId && (
-                            <div className="space-y-1.5 rounded-xl border border-stone-100 bg-stone-50/70 p-3 dark:border-stone-800 dark:bg-stone-800/40">
-                                <span className="flex items-center gap-1.5 text-[11px] font-bold text-stone-600 dark:text-stone-400">
-                                    <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-                                    <span>Pilihan Cepat Varian Cafe:</span>
-                                </span>
-                                <div className="flex flex-wrap gap-1.5">
-                                    <button
-                                        type="button"
-                                        onClick={() => applyPreset('beverage_hot_ice')}
-                                        className="cursor-pointer rounded-lg border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-stone-700 shadow-2xs hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200"
-                                    >
-                                        ☕ Hot & Ice
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => applyPreset('beverage_size')}
-                                        className="cursor-pointer rounded-lg border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-stone-700 shadow-2xs hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200"
-                                    >
-                                        🥤 Reguler & Large
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => applyPreset('single_portion')}
-                                        className="cursor-pointer rounded-lg border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-stone-700 shadow-2xs hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200"
-                                    >
-                                        🍽️ Single Porsi
-                                    </button>
-                                </div>
-                            </div>
-                        )}
 
                         {/* Nama Menu */}
                         <div className="space-y-1">
