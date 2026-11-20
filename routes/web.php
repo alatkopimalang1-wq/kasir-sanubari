@@ -63,6 +63,12 @@ Route::middleware(['auth', EnsurePosRole::class])->group(function () {
     Route::post('/pos/sync-offline-orders', [PosController::class, 'syncOfflineOrders'])->name('pos.sync-offline-orders');
     Route::post('/pos/import-orders', [PosController::class, 'importOrders'])->name('pos.import-orders');
 
+    // Manajemen Menu Cafe (Makanan & Minuman)
+    Route::post('/pos/products', [PosController::class, 'storeProduct'])->name('pos.products.store');
+    Route::post('/pos/products/{id}', [PosController::class, 'updateProduct'])->name('pos.products.update');
+    Route::patch('/pos/products/{id}/toggle-stock', [PosController::class, 'toggleProductStock'])->name('pos.products.toggle-stock');
+    Route::delete('/pos/products/{id}', [PosController::class, 'destroyProduct'])->name('pos.products.destroy');
+
     // Manajemen Kategori Produk POS
     Route::get('/pos/categories', [PosController::class, 'listCategories'])->name('pos.categories.index');
     Route::post('/pos/categories', [PosController::class, 'storeCategory'])->name('pos.categories.store');

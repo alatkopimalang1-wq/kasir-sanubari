@@ -115,6 +115,7 @@ import {
 } from '@/lib/thermal-printer';
 import { ThermalReceiptPreview } from '@/components/pos/thermal-receipt-preview';
 import { CategorySettings, PosCategoryItem } from '@/components/pos/category-settings';
+import { MenuSettings } from '@/components/pos/menu-settings';
 
 interface ProductVariant {
     id: number;
@@ -1252,9 +1253,9 @@ function PosContent({
     const [refundAmount, setRefundAmount] = useState<number | ''>('');
     const [isProcessingRefund, setIsProcessingRefund] = useState(false);
 
-    // --- SETTINGS STATE (Printer, Payments, Appearance, Staff & Categories) ---
+    // --- SETTINGS STATE (Printer, Payments, Appearance, Staff, Categories & Menu Cafe) ---
     const [settingsSubTab, setSettingsSubTab] = useState<
-        'printer' | 'payment' | 'appearance' | 'staff' | 'categories'
+        'printer' | 'payment' | 'appearance' | 'staff' | 'categories' | 'menu'
     >('printer');
     const [printerForm, setPrinterForm] =
         useState<PrinterSettings>(resolvedPrinter);
@@ -4369,6 +4370,27 @@ function PosContent({
                                 </span>
                             </button>
 
+                            {/* Menu Cafe (Makanan & Minuman) */}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setActiveTab('settings');
+                                    setSettingsSubTab('menu');
+                                    setIsSidebarOpen(false);
+                                }}
+                                className={`flex w-full cursor-pointer items-center gap-4 px-5 py-3.5 text-left text-sm font-semibold transition ${
+                                    activeTab === 'settings' && settingsSubTab === 'menu'
+                                        ? 'bg-[#f0f2f5] font-bold text-stone-900 dark:bg-stone-800 dark:text-stone-100'
+                                        : 'text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800/60'
+                                }`}
+                            >
+                                <Coffee className="h-5 w-5 shrink-0 stroke-[2.2] text-amber-600 dark:text-amber-400" />
+                                <span>Menu Cafe (Food & Drink)</span>
+                                <span className="ml-auto rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">
+                                    Baru
+                                </span>
+                            </button>
+
                             {/* 4. Kas Masuk-Keluar */}
                             <button
                                 type="button"
@@ -6240,6 +6262,17 @@ function PosContent({
 
                         {/* Search & Stock Filter */}
                         <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:flex-nowrap">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setActiveTab('settings');
+                                    setSettingsSubTab('menu');
+                                }}
+                                className="flex shrink-0 cursor-pointer items-center gap-1.5 rounded-xl bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs transition hover:bg-amber-700"
+                            >
+                                <Coffee className="h-3.5 w-3.5" />
+                                <span>+ Kelola Menu Cafe</span>
+                            </button>
                             <input
                                 type="text"
                                 value={inventorySearch}
@@ -8565,6 +8598,21 @@ function PosContent({
                                     {categories.length}
                                 </span>
                             </button>
+                            <button
+                                type="button"
+                                onClick={() => setSettingsSubTab('menu')}
+                                className={`flex shrink-0 cursor-pointer items-center gap-1.5 rounded-xl px-3.5 py-2 whitespace-nowrap transition ${
+                                    settingsSubTab === 'menu'
+                                        ? 'bg-amber-600 font-bold text-white shadow-xs'
+                                        : 'text-stone-600 hover:bg-stone-50 hover:text-brand-950 dark:text-stone-400 dark:hover:bg-stone-800/60 dark:hover:text-stone-100'
+                                }`}
+                            >
+                                <Coffee className="h-4 w-4 shrink-0" />
+                                <span>Menu Cafe</span>
+                                <span className="rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+                                    {products.length}
+                                </span>
+                            </button>
                             {isOwner && (
                                 <button
                                     type="button"
@@ -10777,6 +10825,16 @@ function PosContent({
                         <CategorySettings
                             categories={categories}
                             onCategoriesChange={(newCats) => setCategories(newCats)}
+                            showToast={showToast}
+                        />
+                    )}
+
+                    {/* SUBTAB F: PENGATURAN MENU CAFE (FOOD & DRINK) */}
+                    {settingsSubTab === 'menu' && (
+                        <MenuSettings
+                            products={products}
+                            categories={categories}
+                            onProductsChange={(newProds) => setProducts(newProds as any)}
                             showToast={showToast}
                         />
                     )}

@@ -2213,6 +2213,9 @@ class PosController extends Controller
                     'price' => $minPrice,
                     'min_price' => $minPrice,
                     'max_price' => $maxPrice,
+                    'description' => $product->getTranslation('description', 'id')
+                        ?? (is_array($product->description) ? ($product->description['id'] ?? reset($product->description)) : $product->description)
+                        ?? '',
                     'stock_status' => $product->stock_status,
                     'is_out_of_stock' => (bool) $product->is_out_of_stock,
                     'variants' => $product->variants->map(fn (ProductVariant $v) => [
@@ -2227,6 +2230,219 @@ class PosController extends Controller
                     ])->values(),
                 ];
             });
+    }
+
+    /**
+     * Create a new cafe product/menu item from POS.
+     */
+    public function storeProduct(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:150',
+            'category_id' => 'nullable|integer|exists:categories,id',
+            'description' => 'nullable|string|max:1000',
+            'stock_status' => 'nullable|in:in_stock,out_of_stock',
+            'variants' => 'required|array|min:1',
+            'variants.*.label' => 'required|string|max:100',
+            'variants.*.price' => 'required|numeric|min:0',
+            'variants.*.cost_price' => 'nullable|numeric|min:0',
+            'variants.*.stock_status' => 'nullable|in:in_stock,out_of_stock',
+            'image' => 'nullable|image|max:5120',
+        ]);
+
+        $name = trim($validated['name']);
+        $slug = Str::slug($name);
+        $baseSlug = $slug ?: 'menu';
+        $uniqueSlug = $baseSlug;
+        $counter = 1;
+        while (Product::where('slug', $uniqueSlug)->exists()) {
+            $uniqueSlug = "{$baseSlug}-{$counter}";
+            $counter++;
+        }
+
+        $minPrice = collect($validated['variants'])->min('price') ?? 0;
+        $maxPrice = collect($validated['variants'])->max('price') ?? $minPrice;
+
+        $product = Product::create([
+            'name' => $name,
+            'slug' => $uniqueSlug,
+            'description' => ! empty($validated['description']) ? [
+                'id' => trim($validated['description']),
+                'en' => trim($validated['description']),
+            ] : null,
+            'status' => 'active',
+            'channel' => 'all',
+            'stock_status' => $validated['stock_status'] ?? 'in_stock',
+            'min_price' => $minPrice,
+            'max_price' => $maxPrice,
+            'series' => 'cafe-menu',
+        ]);
+
+        if (! empty($validated['category_id'])) {
+            $product->categories()->sync([$validated['category_id']]);
+        }
+
+        foreach ($validated['variants'] as $idx => $v) {
+            $product->variants()->create([
+                'label' => trim($v['label']),
+                'price' => (float) $v['price'],
+                'cost_price' => isset($v['cost_price']) && is_numeric($v['cost_price']) ? (float) $v['cost_price'] : 0.0,
+                'stock_status' => $v['stock_status'] ?? ($product->stock_status ?: 'in_stock'),
+                'weight_grams' => 0,
+                'sku' => 'CAFE-' . strtoupper(Str::random(6)),
+            ]);
+        }
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $product->images()->create([
+                'path' => $path,
+                'is_primary' => true,
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "Menu \"{$name}\" berhasil ditambahkan ke katalog kasir.",
+            'products' => $this->getPosProducts(),
+        ]);
+    }
+
+    /**
+     * Update an existing cafe product/menu item from POS.
+     */
+    public function updateProduct(Request $request, int $id): JsonResponse
+    {
+        $product = Product::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:150',
+            'category_id' => 'nullable|integer|exists:categories,id',
+            'description' => 'nullable|string|max:1000',
+            'stock_status' => 'nullable|in:in_stock,out_of_stock',
+            'variants' => 'required|array|min:1',
+            'variants.*.id' => 'nullable|integer',
+            'variants.*.label' => 'required|string|max:100',
+            'variants.*.price' => 'required|numeric|min:0',
+            'variants.*.cost_price' => 'nullable|numeric|min:0',
+            'variants.*.stock_status' => 'nullable|in:in_stock,out_of_stock',
+            'image' => 'nullable|image|max:5120',
+        ]);
+
+        $name = trim($validated['name']);
+        $slug = Str::slug($name);
+        if ($slug !== $product->slug && Product::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            $slug = "{$slug}-{$id}";
+        }
+
+        $minPrice = collect($validated['variants'])->min('price') ?? 0;
+        $maxPrice = collect($validated['variants'])->max('price') ?? $minPrice;
+
+        $descData = is_array($product->description) ? $product->description : [];
+        if (! empty($validated['description'])) {
+            $descText = trim($validated['description']);
+            $descData['id'] = $descText;
+            if (empty($descData['en'])) {
+                $descData['en'] = $descText;
+            }
+        } else {
+            $descData = null;
+        }
+
+        $product->update([
+            'name' => $name,
+            'slug' => $slug,
+            'description' => $descData,
+            'stock_status' => $validated['stock_status'] ?? $product->stock_status,
+            'min_price' => $minPrice,
+            'max_price' => $maxPrice,
+        ]);
+
+        if (array_key_exists('category_id', $validated)) {
+            $product->categories()->sync($validated['category_id'] ? [$validated['category_id']] : []);
+        }
+
+        // Sync variants
+        $existingVariantIds = [];
+        foreach ($validated['variants'] as $v) {
+            $varId = $v['id'] ?? null;
+            $data = [
+                'label' => trim($v['label']),
+                'price' => (float) $v['price'],
+                'cost_price' => isset($v['cost_price']) && is_numeric($v['cost_price']) ? (float) $v['cost_price'] : 0.0,
+                'stock_status' => $v['stock_status'] ?? ($product->stock_status ?: 'in_stock'),
+                'weight_grams' => 0,
+            ];
+
+            if ($varId && $variant = $product->variants()->find($varId)) {
+                $variant->update($data);
+                $existingVariantIds[] = $variant->id;
+            } else {
+                $newVar = $product->variants()->create(array_merge($data, [
+                    'sku' => 'CAFE-' . strtoupper(Str::random(6)),
+                ]));
+                $existingVariantIds[] = $newVar->id;
+            }
+        }
+
+        // Delete removed variants
+        $product->variants()->whereNotIn('id', $existingVariantIds)->delete();
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $product->images()->update(['is_primary' => false]);
+            $product->images()->create([
+                'path' => $path,
+                'is_primary' => true,
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "Menu \"{$name}\" berhasil diperbarui.",
+            'products' => $this->getPosProducts(),
+        ]);
+    }
+
+    /**
+     * Quick toggle stock status (in_stock <-> out_of_stock).
+     */
+    public function toggleProductStock(int $id): JsonResponse
+    {
+        $product = Product::findOrFail($id);
+        $newStatus = $product->stock_status === 'in_stock' ? 'out_of_stock' : 'in_stock';
+
+        $product->update(['stock_status' => $newStatus]);
+        $product->variants()->update(['stock_status' => $newStatus]);
+
+        $statusLabel = $newStatus === 'in_stock' ? 'Tersedia' : 'Habis (Sold Out)';
+
+        return response()->json([
+            'success' => true,
+            'message' => "Status menu \"{$product->name}\" diubah menjadi: {$statusLabel}",
+            'products' => $this->getPosProducts(),
+        ]);
+    }
+
+    /**
+     * Delete a product/menu item from POS.
+     */
+    public function destroyProduct(int $id): JsonResponse
+    {
+        $product = Product::findOrFail($id);
+        $name = $product->name;
+
+        // Detach relations safely
+        $product->categories()->detach();
+        $product->variants()->delete();
+        $product->images()->delete();
+        $product->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Menu \"{$name}\" berhasil dihapus dari sistem POS.",
+            'products' => $this->getPosProducts(),
+        ]);
     }
 
     /**
