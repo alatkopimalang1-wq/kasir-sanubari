@@ -4327,7 +4327,7 @@ function PosContent({
                                 <span>Aplikasi Kasir</span>
                             </button>
 
-                            {/* Order Manual (HPP + Harga Jual) */}
+                            {/* Order Manual */}
                             <button
                                 type="button"
                                 onClick={() => {
@@ -4339,9 +4339,6 @@ function PosContent({
                             >
                                 <PlusCircle className="h-5 w-5 shrink-0 stroke-[2.2] text-amber-600 dark:text-amber-400" />
                                 <span>Order Manual</span>
-                                <span className="ml-auto rounded-full border border-amber-300 bg-amber-100 px-2 py-0.5 text-[10px] font-extrabold text-amber-800 uppercase dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-300">
-                                    HPP + Jual
-                                </span>
                             </button>
 
                             {/* Antrian Pesanan (Hold Orders) */}
@@ -4833,7 +4830,7 @@ function PosContent({
                                         type="button"
                                         onClick={() => openManualOrderModal()}
                                         className="flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 font-bold whitespace-nowrap text-amber-800 shadow-2xs transition hover:bg-amber-100 active:scale-95 dark:border-amber-700/80 dark:bg-amber-950/60 dark:text-amber-300 dark:hover:bg-amber-900"
-                                        title="Buat orderan / item manual dengan HPP dan harga jual custom (F3)"
+                                        title="Buat orderan / item manual dengan harga jual custom (F3)"
                                     >
                                         <PlusCircle className="h-3.5 w-3.5 text-amber-700 dark:text-amber-400" />
                                         <span>+ Order Manual (F3)</span>
@@ -5302,28 +5299,18 @@ function PosContent({
                                                     @ Rp {formatRp(item.price)}
                                                 </span>
                                                 {item.is_manual && (
-                                                    <>
-                                                        <span className="text-[11px] font-semibold text-rose-600 dark:text-rose-400">
-                                                            (HPP: Rp{' '}
-                                                            {formatRp(
-                                                                item.cost_price ||
-                                                                    0,
-                                                            )}
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            openManualOrderModal(
+                                                                item,
                                                             )
-                                                        </span>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                openManualOrderModal(
-                                                                    item,
-                                                                )
-                                                            }
-                                                            className="ml-1 flex cursor-pointer items-center gap-0.5 text-[11px] font-bold text-brand-700 hover:underline dark:text-amber-400"
-                                                        >
-                                                            <Pencil className="h-2.5 w-2.5" />
-                                                            <span>Edit</span>
-                                                        </button>
-                                                    </>
+                                                        }
+                                                        className="ml-1 flex cursor-pointer items-center gap-0.5 text-[11px] font-bold text-brand-700 hover:underline dark:text-amber-400"
+                                                    >
+                                                        <Pencil className="h-2.5 w-2.5" />
+                                                        <span>Edit</span>
+                                                    </button>
                                                 )}
                                             </div>
 
@@ -5336,33 +5323,6 @@ function PosContent({
                                             {item.cost_price !== undefined && item.cost_price > 0 && !item.is_manual && (
                                                 <div className="mt-0.5 text-[10px] font-mono text-amber-600 dark:text-amber-400">
                                                     HPP: Rp {formatRp(item.cost_price)} | Laba: +Rp {formatRp(item.price - item.cost_price)}
-                                                </div>
-                                            )}
-
-                                            {item.is_manual && (
-                                                <div className="mt-1 flex items-center gap-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">
-                                                    <span>
-                                                        Laba Kotor: +Rp{' '}
-                                                        {formatRp(
-                                                            (item.price -
-                                                                (item.cost_price ||
-                                                                    0)) *
-                                                                item.quantity,
-                                                        )}
-                                                    </span>
-                                                    {item.price > 0 && (
-                                                        <span className="text-[10px] text-stone-400 dark:text-stone-500">
-                                                            (
-                                                            {(
-                                                                ((item.price -
-                                                                    (item.cost_price ||
-                                                                        0)) /
-                                                                    item.price) *
-                                                                100
-                                                            ).toFixed(0)}
-                                                            %)
-                                                        </span>
-                                                    )}
                                                 </div>
                                             )}
 
@@ -12846,8 +12806,7 @@ function PosContent({
                                             : 'Buat Orderan Manual'}
                                     </h3>
                                     <p className="text-[11px] text-stone-500 dark:text-stone-400">
-                                        Masukkan HPP & Harga Jual untuk
-                                        perhitungan laba rugi real di kasir
+                                        Masukkan nama item dan harga jual untuk ditambahkan ke kasir
                                     </p>
                                 </div>
                             </div>
@@ -12900,71 +12859,32 @@ function PosContent({
                                 />
                             </div>
 
-                            {/* 3. Grid: HPP Modal & Harga Jual */}
-                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                {/* HPP Produk */}
-                                <div className="space-y-1.5 rounded-xl border border-rose-200 bg-rose-50/60 p-3 dark:border-rose-900/60 dark:bg-rose-950/20">
-                                    <label className="flex items-center justify-between text-[11px] font-bold text-rose-900 dark:text-rose-300">
-                                        <span>HPP Produk (Modal Satuan)</span>
-                                        <span className="text-[10px] font-normal text-rose-600 dark:text-rose-400">
-                                            Biaya Modal
-                                        </span>
-                                    </label>
-                                    <div className="relative">
-                                        <span className="absolute top-1/2 left-3 -translate-y-1/2 text-xs font-bold text-rose-600 dark:text-rose-400">
-                                            Rp
-                                        </span>
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            step="100"
-                                            value={manualCostPrice}
-                                            onChange={(e) =>
-                                                setManualCostPrice(
-                                                    e.target.value,
-                                                )
-                                            }
-                                            placeholder="0"
-                                            className="w-full rounded-lg border border-rose-300 bg-white py-2 pr-3 pl-9 text-sm font-bold text-rose-950 focus:ring-1 focus:ring-rose-500 focus:outline-none dark:border-rose-800 dark:bg-stone-900 dark:text-rose-100"
-                                        />
-                                    </div>
-                                    <p className="text-[10px] text-rose-700 dark:text-rose-300/80">
-                                        Digunakan untuk menghitung HPP & Laba
-                                        Rugi real pada laporan kasir.
-                                    </p>
-                                </div>
-
-                                {/* Harga Jual Produk */}
-                                <div className="space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50/60 p-3 dark:border-emerald-900/60 dark:bg-emerald-950/20">
-                                    <label className="flex items-center justify-between text-[11px] font-bold text-emerald-900 dark:text-emerald-300">
-                                        <span>Harga Jual Produk (Satuan)</span>
-                                        <span className="text-rose-600">*</span>
-                                    </label>
-                                    <div className="relative">
-                                        <span className="absolute top-1/2 left-3 -translate-y-1/2 text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                                            Rp
-                                        </span>
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            step="500"
-                                            required
-                                            value={manualPrice}
-                                            onChange={(e) =>
-                                                setManualPrice(e.target.value)
-                                            }
-                                            placeholder="0"
-                                            className="w-full rounded-lg border border-emerald-300 bg-white py-2 pr-3 pl-9 text-sm font-bold text-emerald-950 focus:ring-1 focus:ring-emerald-500 focus:outline-none dark:border-emerald-800 dark:bg-stone-900 dark:text-emerald-100"
-                                        />
-                                    </div>
-                                    <p className="text-[10px] text-emerald-700 dark:text-emerald-300/80">
-                                        Harga yang ditagihkan ke pelanggan saat
-                                        checkout.
-                                    </p>
+                            {/* 3. Harga Jual Produk */}
+                            <div>
+                                <label className="mb-1 flex items-center justify-between text-[11px] font-bold text-stone-800 dark:text-stone-200">
+                                    <span>Harga Jual Produk (Satuan)</span>
+                                    <span className="text-rose-600">*</span>
+                                </label>
+                                <div className="relative">
+                                    <span className="absolute top-1/2 left-3 -translate-y-1/2 text-xs font-bold text-stone-500 dark:text-stone-400">
+                                        Rp
+                                    </span>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        step="500"
+                                        required
+                                        value={manualPrice}
+                                        onChange={(e) =>
+                                            setManualPrice(e.target.value)
+                                        }
+                                        placeholder="0"
+                                        className="w-full rounded-xl border border-stone-300 bg-stone-50 py-2.5 pr-3 pl-9 text-sm font-bold text-stone-900 focus:bg-white focus:ring-1 focus:ring-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white dark:focus:bg-stone-800"
+                                    />
                                 </div>
                             </div>
 
-                            {/* 4. Jumlah (Qty) & Real-time Profit Preview */}
+                            {/* 4. Jumlah (Qty) */}
                             <div className="space-y-3 rounded-xl border border-stone-200 bg-stone-100 p-3.5 dark:border-stone-700 dark:bg-stone-800/80">
                                 <div className="flex items-center justify-between">
                                     <span className="text-xs font-bold text-stone-800 dark:text-stone-200">
@@ -13014,58 +12934,20 @@ function PosContent({
                                 {/* Real-time Calculation Summary */}
                                 {(() => {
                                     const selling = Number(manualPrice) || 0;
-                                    const cost = Number(manualCostPrice) || 0;
                                     const qty = Math.max(
                                         1,
                                         Number(manualQuantity) || 1,
                                     );
                                     const subtotalCalc = selling * qty;
-                                    const totalCostCalc = cost * qty;
-                                    const grossProfitCalc =
-                                        subtotalCalc - totalCostCalc;
-                                    const marginPercent =
-                                        subtotalCalc > 0
-                                            ? (grossProfitCalc / subtotalCalc) *
-                                              100
-                                            : 0;
 
                                     return (
-                                        <div className="space-y-1.5 border-t border-stone-200 pt-2 text-[11px] dark:border-stone-700/80">
-                                            <div className="flex justify-between text-stone-600 dark:text-stone-300">
-                                                <span>
-                                                    Subtotal Penjualan ({qty}{' '}
-                                                    item):
-                                                </span>
-                                                <span className="font-bold text-stone-900 dark:text-white">
-                                                    Rp {formatRp(subtotalCalc)}
-                                                </span>
-                                            </div>
-                                            <div className="flex justify-between text-rose-600 dark:text-rose-400">
-                                                <span>
-                                                    Total Modal HPP ({qty}{' '}
-                                                    item):
-                                                </span>
-                                                <span className="font-semibold">
-                                                    - Rp{' '}
-                                                    {formatRp(totalCostCalc)}
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-between border-t border-dashed border-stone-200 pt-1.5 font-bold dark:border-stone-700">
-                                                <span className="text-stone-800 dark:text-stone-200">
-                                                    Estimasi Laba Kotor Real:
-                                                </span>
-                                                <span
-                                                    className={`text-xs ${grossProfitCalc >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}
-                                                >
-                                                    {grossProfitCalc >= 0
-                                                        ? '+ '
-                                                        : ''}
-                                                    Rp{' '}
-                                                    {formatRp(grossProfitCalc)}
-                                                    {subtotalCalc > 0 &&
-                                                        ` (${marginPercent.toFixed(1)}%)`}
-                                                </span>
-                                            </div>
+                                        <div className="flex items-center justify-between border-t border-stone-200 pt-2 text-xs dark:border-stone-700/80">
+                                            <span className="text-stone-600 dark:text-stone-300">
+                                                Subtotal ({qty} item):
+                                            </span>
+                                            <span className="font-bold text-stone-900 dark:text-white">
+                                                Rp {formatRp(subtotalCalc)}
+                                            </span>
                                         </div>
                                     );
                                 })()}
