@@ -220,7 +220,7 @@ export const CategorySettings: React.FC<CategorySettingsProps> = ({
                 <div className="min-w-0 flex-1 space-y-1">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                         <h3 className="text-sm font-bold text-brand-950 dark:text-brand-100">
-                            Pengaturan Kategori Produk POS
+                            Pengaturan Kategori Menu POS
                         </h3>
                         <span className="shrink-0 rounded-full bg-brand-700 px-2.5 py-0.5 text-[10px] font-bold text-white">
                             {categories.length} Kategori Terdaftar
@@ -394,12 +394,12 @@ export const CategorySettings: React.FC<CategorySettingsProps> = ({
                     </form>
                 </div>
 
-                {/* KOLOM KANAN: DAFTAR KATEGORI PRODUK */}
+                {/* KOLOM KANAN: DAFTAR KATEGORI MENU */}
                 <div className="min-w-0 space-y-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-xs sm:space-y-5 sm:p-6 lg:col-span-7 dark:border-stone-800 dark:bg-stone-900">
                     <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
                         <div>
                             <h4 className="text-sm font-bold text-stone-900 dark:text-white">
-                                Daftar Kategori Produk
+                                Daftar Kategori Menu
                             </h4>
                             <p className="text-[11px] text-stone-500 dark:text-stone-400">
                                 Total {categories.length} kategori terdaftar di sistem POS

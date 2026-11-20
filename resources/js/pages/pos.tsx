@@ -4399,7 +4399,7 @@ function PosContent({
                                 </span>
                             </button>
 
-                            {/* Kategori Produk */}
+                            {/* Kategori Menu */}
                             <button
                                 type="button"
                                 onClick={() => {
@@ -4414,7 +4414,7 @@ function PosContent({
                                 }`}
                             >
                                 <Tag className="h-5 w-5 shrink-0 stroke-[2.2] text-brand-700 dark:text-brand-400" />
-                                <span>Kategori Produk</span>
+                                <span>Kategori Menu</span>
                                 <span className="ml-auto text-xs font-medium text-stone-400">
                                     {categories.length} kategori
                                 </span>
@@ -8643,7 +8643,7 @@ function PosContent({
                                 }`}
                             >
                                 <Tag className="h-4 w-4 shrink-0" />
-                                <span>Kategori Produk</span>
+                                <span>Kategori Menu</span>
                                 <span className="rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] text-stone-600 dark:bg-stone-800 dark:text-stone-300">
                                     {categories.length}
                                 </span>
