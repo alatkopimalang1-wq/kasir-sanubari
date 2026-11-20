@@ -4237,17 +4237,36 @@ function PosContent({
     };
 
     const handlePrintPreBill = () => {
-        if (
-            isAndroidNativeBluetoothAvailable() &&
-            !(connectedBtPrinter || getSavedBluetoothPrinter())
-        ) {
-            openBluetoothScannerModal();
-            return;
-        }
-        printPreBillThermalWeb(currentPreBillData, printerForm.paper_width);
-        if (isAndroidNativeBluetoothAvailable() && (connectedBtPrinter || getSavedBluetoothPrinter())) {
-            showToast('✓ Mencetak struk estimasi ke printer Bluetooth...');
-        }
+        const preBillReceiptData: ReceiptData = {
+            order_number: 'PRE-BILL',
+            store_name: currentPreBillData.store_name,
+            tagline: currentPreBillData.tagline,
+            address: currentPreBillData.address,
+            phone: currentPreBillData.phone,
+            instagram: currentPreBillData.instagram,
+            cashier_name: currentPreBillData.cashier_name,
+            customer_name: currentPreBillData.customer_name,
+            customer_phone: currentPreBillData.customer_phone,
+            customer_address: currentPreBillData.customer_address,
+            shipping_cost: currentPreBillData.shipping_cost,
+            shipping_courier: currentPreBillData.shipping_courier,
+            date: currentPreBillData.date,
+            items: currentPreBillData.items.map((i) => ({
+                product_name: i.product_name,
+                variant_label: i.variant_label,
+                quantity: i.quantity,
+                price: i.price,
+                subtotal: i.subtotal,
+            })),
+            subtotal: currentPreBillData.subtotal,
+            discount_amount: currentPreBillData.discount_amount,
+            total_amount: currentPreBillData.total_amount,
+            payment_method: 'unpaid',
+            payment_method_label: 'ESTIMASI / PRE-BILL',
+            notes: currentPreBillData.notes,
+        };
+
+        handleBluetoothPrint(preBillReceiptData);
     };
 
     // Helper to switch tab from sidebar
@@ -12601,11 +12620,11 @@ function PosContent({
                                 <button
                                     type="button"
                                     onClick={handlePrintPreBill}
-                                    className="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-stone-200 bg-stone-100 px-3 py-2.5 text-xs font-bold text-stone-800 transition hover:bg-stone-200 active:scale-95 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700"
-                                    title="Cetak Bill Kasir Thermal (58mm/80mm)"
+                                    className="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2.5 text-xs font-bold text-emerald-900 shadow-2xs transition hover:bg-emerald-100 active:scale-95 dark:border-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-200 dark:hover:bg-emerald-900/60"
+                                    title="Cetak Struk ke Printer Bluetooth"
                                 >
-                                    <Printer className="h-4 w-4 text-stone-700 dark:text-stone-300" />
-                                    <span>Cetak Kasir</span>
+                                    <Smartphone className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+                                    <span>Cetak Struk Bluetooth</span>
                                 </button>
                             </div>
 

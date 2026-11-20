@@ -206,45 +206,4 @@ import{n as e}from"./circle-check-BqbNOKjC.js";var t=e(`ArrowLeft`,[[`path`,{d:`
 `,e.bank_info&&(n+=`- Rekening: ${e.bank_info}\n`),e.qris_instructions&&(n+=`- QRIS: ${e.qris_instructions}\n`),n+=`----------------------------------------
 `),n+=`Silakan konfirmasi pesanan ini atau lakukan pembayaran di kasir / transfer bank.
 Terima kasih!
-`,e.instagram&&(n+=`\nInstagram: https://instagram.com/${e.instagram.replace(`@`,``)}\n`),n}function Y(e,t){let n=(t||e.customer_phone||``).replace(/[^0-9]/g,``);n.startsWith(`0`)&&(n=`62`+n.substring(1));let r=J(e),i=encodeURIComponent(r);return n?`https://wa.me/${n}?text=${i}`:`https://wa.me/?text=${i}`}function X(e,t=`58mm`){let n=t===`80mm`?42:32,r=`-`.repeat(n),i=`=`.repeat(n),a=[];a.push(s(e.store_name.toUpperCase(),n)),e.tagline&&a.push(s(e.tagline,n)),e.address&&a.push(s(e.address,n)),e.phone&&a.push(s(`Telp/WA: ${e.phone}`,n)),a.push(i),a.push(s(`ESTIMASI PESANAN (PRE-BILL)`,n)),a.push(s(`** BELUM DIBAYAR **`,n)),a.push(r),a.push(c(`Waktu:`,e.date,n)),a.push(c(`Kasir:`,e.cashier_name,n)),e.customer_name&&a.push(c(`Pelanggan:`,e.customer_name,n)),e.customer_phone&&a.push(c(`Telp/WA:`,e.customer_phone,n)),e.customer_address&&a.push(`Alamat: ${e.customer_address}`),a.push(r);for(let t of e.items){let e=t.product_name.length>n?t.product_name.substring(0,n):t.product_name;a.push(e);let r=`  ${t.quantity}x @${o(t.price)} (${t.variant_label})`,i=`Rp ${o(t.subtotal)}`;a.push(c(r,i,n))}if(a.push(r),a.push(c(`Subtotal`,`Rp ${o(e.subtotal)}`,n)),e.discount_amount>0&&a.push(c(`Diskon`,`-Rp ${o(e.discount_amount)}`,n)),e.shipping_cost&&e.shipping_cost>0){let t=e.shipping_courier?` (${e.shipping_courier})`:``;a.push(c(`Ongkir${t}`,`Rp ${o(e.shipping_cost)}`,n))}return a.push(i),a.push(c(`TOTAL TAGIHAN`,`Rp ${o(e.total_amount)}`,n)),a.push(r),e.bank_info&&(a.push(s(`PEMBAYARAN TRANSFER:`,n)),a.push(s(e.bank_info,n)),a.push(r)),a.push(s(`Silakan lakukan pembayaran di kasir`,n)),a.push(s(`Terima kasih!`,n)),a.join(`
-`)}function Z(e,t=`58mm`){let n=X(e,t);d(`
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Pre-Bill / Estimasi Pesanan</title>
-    <style>
-        @page {
-            size: ${t===`80mm`?`80mm auto`:`58mm auto`};
-            margin: 0;
-        }
-        body {
-            margin: 0;
-            padding: 2mm;
-            width: ${t===`80mm`?`76mm`:`48mm`};
-            font-family: 'Courier New', Courier, monospace, -apple-system;
-            font-size: ${t===`80mm`?`12px`:`10.5px`};
-            line-height: 1.25;
-            color: #000;
-            background: #fff;
-        }
-        pre {
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-word;
-            font-family: inherit;
-            font-size: inherit;
-        }
-        @media print {
-            body {
-                width: 100%;
-                padding: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <pre>${n.replace(/</g,`&lt;`).replace(/>/g,`&gt;`)}</pre>
-</body>
-</html>
-    `,n,1,!1,t)}export{n as A,S as C,a as D,F as E,i as O,f as S,P as T,Z as _,J as a,H as b,U as c,j as d,b as f,I as g,A as h,l as i,t as j,r as k,N as l,_ as m,R as n,Y as o,k as p,o as r,B as s,L as t,v as u,q as v,z as w,w as x,G as y};
+`,e.instagram&&(n+=`\nInstagram: https://instagram.com/${e.instagram.replace(`@`,``)}\n`),n}function Y(e,t){let n=(t||e.customer_phone||``).replace(/[^0-9]/g,``);n.startsWith(`0`)&&(n=`62`+n.substring(1));let r=J(e),i=encodeURIComponent(r);return n?`https://wa.me/${n}?text=${i}`:`https://wa.me/?text=${i}`}export{t as A,z as C,i as D,a as E,r as O,S,F as T,q as _,J as a,w as b,U as c,j as d,b as f,I as g,A as h,l as i,n as k,N as l,_ as m,R as n,Y as o,k as p,o as r,B as s,L as t,v as u,G as v,P as w,f as x,H as y};
