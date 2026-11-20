@@ -2230,29 +2230,190 @@ class PosController extends Controller
     }
 
     /**
+     * List all categories for POS management.
+     */
+    public function listCategories(): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'categories' => $this->getPosCategories(),
+        ]);
+    }
+
+    /**
+     * Create a new category from POS.
+     */
+    public function storeCategory(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+            'slug' => 'nullable|string|max:100',
+            'description' => 'nullable|string|max:500',
+            'icon' => 'nullable|string|max:50',
+            'sort_order' => 'nullable|integer|min:0',
+        ]);
+
+        $name = trim($validated['name']);
+        $slug = ! empty($validated['slug']) ? Str::slug($validated['slug']) : Str::slug($name);
+
+        // Ensure unique slug
+        $baseSlug = $slug ?: 'kategori';
+        $uniqueSlug = $baseSlug;
+        $counter = 1;
+        while (Category::where('slug', $uniqueSlug)->exists()) {
+            $uniqueSlug = "{$baseSlug}-{$counter}";
+            $counter++;
+        }
+
+        $sortOrder = $validated['sort_order'] ?? ((int) Category::max('sort_order') + 1);
+
+        $category = Category::create([
+            'name' => [
+                'id' => $name,
+                'en' => $name,
+            ],
+            'slug' => $uniqueSlug,
+            'description' => ! empty($validated['description']) ? [
+                'id' => trim($validated['description']),
+                'en' => trim($validated['description']),
+            ] : null,
+            'icon' => ! empty($validated['icon']) ? trim($validated['icon']) : null,
+            'sort_order' => $sortOrder,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => "Kategori \"{$name}\" berhasil ditambahkan.",
+            'category' => [
+                'id' => $category->id,
+                'name' => $name,
+                'slug' => $category->slug,
+                'icon' => $category->icon,
+                'description' => $validated['description'] ?? '',
+                'sort_order' => (int) $category->sort_order,
+                'products_count' => 0,
+            ],
+            'categories' => $this->getPosCategories(),
+        ]);
+    }
+
+    /**
+     * Update an existing category from POS.
+     */
+    public function updateCategory(Request $request, int $id): JsonResponse
+    {
+        $category = Category::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+            'slug' => 'nullable|string|max:100',
+            'description' => 'nullable|string|max:500',
+            'icon' => 'nullable|string|max:50',
+            'sort_order' => 'nullable|integer|min:0',
+        ]);
+
+        $name = trim($validated['name']);
+        $slug = ! empty($validated['slug']) ? Str::slug($validated['slug']) : Str::slug($name);
+
+        if ($slug !== $category->slug && Category::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            $slug = "{$slug}-{$id}";
+        }
+
+        // Maintain translation structure
+        $nameData = is_array($category->name) ? $category->name : [];
+        $nameData['id'] = $name;
+        if (empty($nameData['en'])) {
+            $nameData['en'] = $name;
+        }
+
+        $descData = is_array($category->description) ? $category->description : [];
+        if (! empty($validated['description'])) {
+            $descText = trim($validated['description']);
+            $descData['id'] = $descText;
+            if (empty($descData['en'])) {
+                $descData['en'] = $descText;
+            }
+        } else {
+            $descData = null;
+        }
+
+        $category->update([
+            'name' => $nameData,
+            'slug' => $slug,
+            'description' => $descData,
+            'icon' => ! empty($validated['icon']) ? trim($validated['icon']) : $category->icon,
+            'sort_order' => $validated['sort_order'] ?? $category->sort_order,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => "Kategori \"{$name}\" berhasil diperbarui.",
+            'category' => [
+                'id' => $category->id,
+                'name' => $name,
+                'slug' => $category->slug,
+                'icon' => $category->icon,
+                'description' => $validated['description'] ?? '',
+                'sort_order' => (int) $category->sort_order,
+                'products_count' => (int) $category->products()->count(),
+            ],
+            'categories' => $this->getPosCategories(),
+        ]);
+    }
+
+    /**
+     * Delete an existing category from POS.
+     */
+    public function destroyCategory(int $id): JsonResponse
+    {
+        $category = Category::findOrFail($id);
+        $name = $category->getTranslation('name', 'id') ?? (is_array($category->name) ? ($category->name['id'] ?? reset($category->name)) : $category->name) ?? $category->slug;
+
+        // Detach products safely from pivot so products are not deleted
+        $category->products()->detach();
+
+        $category->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Kategori \"{$name}\" berhasil dihapus.",
+            'categories' => $this->getPosCategories(),
+        ]);
+    }
+
+    /**
      * Get normalized POS categories.
      */
     protected function getPosCategories()
     {
-        $posAllowedCategorySlugs = [
-            'filter-beans',
-            'arabica',
-            'houseblend',
-            'robusta',
-        ];
-
-        $categoriesQuery = Category::query();
-        if (Category::whereIn('slug', $posAllowedCategorySlugs)->exists()) {
-            $categoriesQuery->whereIn('slug', $posAllowedCategorySlugs);
-        }
-
-        return $categoriesQuery->orderBy('sort_order')
+        return Category::query()
+            ->whereNotIn('slug', ['classic-process', 'experimental-process'])
+            ->where('slug', 'not like', '%-process')
+            ->where(function ($q) {
+                $q->whereNull('type')->orWhere('type', '!=', 'process');
+            })
+            ->withCount('products')
+            ->orderBy('sort_order')
+            ->orderBy('id')
             ->get()
-            ->map(fn (Category $c) => [
-                'id' => $c->id,
-                'name' => $c->getTranslation('name', 'id') ?? $c->slug,
-                'slug' => $c->slug,
-                'icon' => $c->icon,
-            ]);
+            ->map(function (Category $c) {
+                $name = $c->getTranslation('name', 'id')
+                    ?? (is_array($c->name) ? ($c->name['id'] ?? reset($c->name)) : $c->name)
+                    ?? $c->slug;
+
+                $desc = $c->getTranslation('description', 'id')
+                    ?? (is_array($c->description) ? ($c->description['id'] ?? reset($c->description)) : $c->description)
+                    ?? '';
+
+                return [
+                    'id' => $c->id,
+                    'name' => $name,
+                    'slug' => $c->slug,
+                    'icon' => $c->icon,
+                    'description' => $desc,
+                    'sort_order' => (int) ($c->sort_order ?? 0),
+                    'products_count' => (int) ($c->products_count ?? 0),
+                ];
+            });
     }
 }

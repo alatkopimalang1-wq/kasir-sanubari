@@ -114,16 +114,17 @@ import {
     generateRawBtPrintUrl,
 } from '@/lib/thermal-printer';
 import { ThermalReceiptPreview } from '@/components/pos/thermal-receipt-preview';
+import { CategorySettings, PosCategoryItem } from '@/components/pos/category-settings';
 
 interface ProductVariant {
     id: number;
     label: string;
     price: number;
-    original_price: number | null;
+    original_price?: number | null;
     cost_price?: number | null;
     weight_grams: number;
-    sku: string | null;
-    stock_status: string;
+    sku?: string | null;
+    stock_status?: string;
 }
 
 interface Product {
@@ -140,14 +141,13 @@ interface Product {
     stock_status: string;
     is_out_of_stock: boolean;
     variants: ProductVariant[];
+    origin?: string | null;
+    process?: string | null;
+    price_per_10g?: number | null;
+    cost_price_per_10g?: number | null;
 }
 
-interface Category {
-    id: number;
-    name: string;
-    slug: string;
-    icon: string | null;
-}
+interface Category extends PosCategoryItem {}
 
 interface PosRecentOrder {
     id: number;
@@ -1252,9 +1252,9 @@ function PosContent({
     const [refundAmount, setRefundAmount] = useState<number | ''>('');
     const [isProcessingRefund, setIsProcessingRefund] = useState(false);
 
-    // --- SETTINGS STATE (Printer, Payments, Appearance & Staff) ---
+    // --- SETTINGS STATE (Printer, Payments, Appearance, Staff & Categories) ---
     const [settingsSubTab, setSettingsSubTab] = useState<
-        'printer' | 'payment' | 'appearance' | 'staff'
+        'printer' | 'payment' | 'appearance' | 'staff' | 'categories'
     >('printer');
     const [printerForm, setPrinterForm] =
         useState<PrinterSettings>(resolvedPrinter);
@@ -4345,6 +4345,27 @@ function PosContent({
                                 <span>Inventori</span>
                                 <span className="ml-auto text-xs font-medium text-stone-400">
                                     {products.length} item
+                                </span>
+                            </button>
+
+                            {/* Kategori Produk */}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setActiveTab('settings');
+                                    setSettingsSubTab('categories');
+                                    setIsSidebarOpen(false);
+                                }}
+                                className={`flex w-full cursor-pointer items-center gap-4 px-5 py-3.5 text-left text-sm font-semibold transition ${
+                                    activeTab === 'settings' && settingsSubTab === 'categories'
+                                        ? 'bg-[#f0f2f5] font-bold text-stone-900 dark:bg-stone-800 dark:text-stone-100'
+                                        : 'text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800/60'
+                                }`}
+                            >
+                                <Tag className="h-5 w-5 shrink-0 stroke-[2.2] text-brand-700 dark:text-brand-400" />
+                                <span>Kategori Produk</span>
+                                <span className="ml-auto text-xs font-medium text-stone-400">
+                                    {categories.length} kategori
                                 </span>
                             </button>
 
@@ -8529,6 +8550,21 @@ function PosContent({
                                 <Sun className="h-4 w-4 shrink-0" />
                                 <span>Tema & Tampilan</span>
                             </button>
+                            <button
+                                type="button"
+                                onClick={() => setSettingsSubTab('categories')}
+                                className={`flex shrink-0 cursor-pointer items-center gap-1.5 rounded-xl px-3.5 py-2 whitespace-nowrap transition ${
+                                    settingsSubTab === 'categories'
+                                        ? 'bg-brand-700 font-bold text-white shadow-xs'
+                                        : 'text-stone-600 hover:bg-stone-50 hover:text-brand-950 dark:text-stone-400 dark:hover:bg-stone-800/60 dark:hover:text-stone-100'
+                                }`}
+                            >
+                                <Tag className="h-4 w-4 shrink-0" />
+                                <span>Kategori Produk</span>
+                                <span className="rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+                                    {categories.length}
+                                </span>
+                            </button>
                             {isOwner && (
                                 <button
                                     type="button"
@@ -10734,6 +10770,15 @@ function PosContent({
                                 </div>
                             </div>
                         </div>
+                    )}
+
+                    {/* SUBTAB E: PENGATURAN KATEGORI PRODUK POS */}
+                    {settingsSubTab === 'categories' && (
+                        <CategorySettings
+                            categories={categories}
+                            onCategoriesChange={(newCats) => setCategories(newCats)}
+                            showToast={showToast}
+                        />
                     )}
                 </div>
             )}

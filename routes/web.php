@@ -63,6 +63,12 @@ Route::middleware(['auth', EnsurePosRole::class])->group(function () {
     Route::post('/pos/sync-offline-orders', [PosController::class, 'syncOfflineOrders'])->name('pos.sync-offline-orders');
     Route::post('/pos/import-orders', [PosController::class, 'importOrders'])->name('pos.import-orders');
 
+    // Manajemen Kategori Produk POS
+    Route::get('/pos/categories', [PosController::class, 'listCategories'])->name('pos.categories.index');
+    Route::post('/pos/categories', [PosController::class, 'storeCategory'])->name('pos.categories.store');
+    Route::put('/pos/categories/{id}', [PosController::class, 'updateCategory'])->name('pos.categories.update');
+    Route::delete('/pos/categories/{id}', [PosController::class, 'destroyCategory'])->name('pos.categories.destroy');
+
     // Manajemen Staf Kasir (Admin / Owner)
     Route::get('/pos/staff', [PosController::class, 'listStaff'])->name('pos.staff.index');
     Route::post('/pos/staff', [PosController::class, 'storeStaff'])->name('pos.staff.store');
