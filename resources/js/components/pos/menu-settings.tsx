@@ -12,7 +12,6 @@ import {
     CheckCircle2,
     XCircle,
     ImageIcon,
-    Percent,
     SlidersHorizontal,
     Sparkles,
 } from 'lucide-react';
@@ -67,7 +66,7 @@ interface VariantFormItem {
     id?: number;
     label: string;
     price: number | '';
-    cost_price: number | '';
+    cost_price?: number | '';
     stock_status: 'in_stock' | 'out_of_stock';
 }
 
@@ -84,7 +83,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
     const [description, setDescription] = useState('');
     const [stockStatus, setStockStatus] = useState<'in_stock' | 'out_of_stock'>('in_stock');
     const [variants, setVariants] = useState<VariantFormItem[]>([
-        { label: 'Standar', price: '', cost_price: '', stock_status: 'in_stock' },
+        { label: 'Standar', price: '', cost_price: 0, stock_status: 'in_stock' },
     ]);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -110,17 +109,17 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
     const applyPreset = (type: 'beverage_hot_ice' | 'beverage_size' | 'single_portion') => {
         if (type === 'beverage_hot_ice') {
             setVariants([
-                { label: 'Hot', price: variants[0]?.price || '', cost_price: variants[0]?.cost_price || '', stock_status: 'in_stock' },
-                { label: 'Ice', price: variants[0]?.price ? Number(variants[0].price) + 2000 : '', cost_price: variants[0]?.cost_price || '', stock_status: 'in_stock' },
+                { label: 'Hot', price: variants[0]?.price || '', cost_price: 0, stock_status: 'in_stock' },
+                { label: 'Ice', price: variants[0]?.price ? Number(variants[0].price) + 2000 : '', cost_price: 0, stock_status: 'in_stock' },
             ]);
         } else if (type === 'beverage_size') {
             setVariants([
-                { label: 'Reguler', price: variants[0]?.price || '', cost_price: variants[0]?.cost_price || '', stock_status: 'in_stock' },
-                { label: 'Large', price: variants[0]?.price ? Number(variants[0].price) + 4000 : '', cost_price: variants[0]?.cost_price || '', stock_status: 'in_stock' },
+                { label: 'Reguler', price: variants[0]?.price || '', cost_price: 0, stock_status: 'in_stock' },
+                { label: 'Large', price: variants[0]?.price ? Number(variants[0].price) + 4000 : '', cost_price: 0, stock_status: 'in_stock' },
             ]);
         } else if (type === 'single_portion') {
             setVariants([
-                { label: '1 Porsi', price: variants[0]?.price || '', cost_price: variants[0]?.cost_price || '', stock_status: 'in_stock' },
+                { label: '1 Porsi', price: variants[0]?.price || '', cost_price: 0, stock_status: 'in_stock' },
             ]);
         }
     };
@@ -128,7 +127,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
     const handleAddVariantRow = () => {
         setVariants((prev) => [
             ...prev,
-            { label: `Varian ${prev.length + 1}`, price: '', cost_price: '', stock_status: 'in_stock' },
+            { label: `Varian ${prev.length + 1}`, price: '', cost_price: 0, stock_status: 'in_stock' },
         ]);
     };
 
@@ -406,7 +405,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                         </span>
                     </div>
                     <p className="text-xs leading-relaxed text-brand-900/80 dark:text-brand-200/80">
-                        Atur daftar hidangan makanan, kopi, dan aneka minuman cafe. Kelola harga jual, HPP (modal bahan baku), varian ukuran/suhu, serta status ketersediaan stok menu secara real-time.
+                        Atur daftar hidangan makanan, kopi, dan aneka minuman cafe. Kelola harga jual, varian ukuran/suhu, serta status ketersediaan stok menu secara real-time.
                     </p>
                 </div>
             </div>
@@ -563,11 +562,11 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                             </div>
                         </div>
 
-                        {/* TABEL VARIAN, HARGA & HPP */}
+                        {/* TABEL VARIAN & HARGA JUAL */}
                         <div className="space-y-2 pt-1">
                             <div className="flex items-center justify-between">
                                 <label className="font-semibold text-stone-700 dark:text-stone-300">
-                                    Varian, Harga Jual & HPP (Modal) <span className="text-rose-500">*</span>
+                                    Varian & Harga Jual <span className="text-rose-500">*</span>
                                 </label>
                                 <button
                                     type="button"
@@ -580,96 +579,53 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                             </div>
 
                             <div className="space-y-2">
-                                {variants.map((v, idx) => {
-                                    const sellingPrice = Number(v.price) || 0;
-                                    const costPrice = Number(v.cost_price) || 0;
-                                    const profit = sellingPrice - costPrice;
-                                    const marginPct = sellingPrice > 0 ? ((profit / sellingPrice) * 100).toFixed(0) : 0;
-
-                                    return (
-                                        <div
-                                            key={idx}
-                                            className="space-y-1.5 rounded-xl border border-stone-200 bg-stone-50/70 p-2.5 dark:border-stone-700 dark:bg-stone-800/50"
-                                        >
-                                            <div className="flex items-center gap-2">
-                                                <input
-                                                    type="text"
-                                                    required
-                                                    value={v.label}
-                                                    onChange={(e) =>
-                                                        handleVariantChange(idx, 'label', e.target.value)
-                                                    }
-                                                    placeholder="Nama Varian (Hot, Ice, Large...)"
-                                                    className="w-1/3 rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-xs text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
-                                                />
-                                                <div className="relative w-1/3">
-                                                    <span className="pointer-events-none absolute top-1.5 left-2 text-[10px] text-stone-400">
-                                                        Jual:
-                                                    </span>
-                                                    <input
-                                                        type="number"
-                                                        required
-                                                        min="0"
-                                                        value={v.price}
-                                                        onChange={(e) =>
-                                                            handleVariantChange(
-                                                                idx,
-                                                                'price',
-                                                                e.target.value === '' ? '' : Number(e.target.value),
-                                                            )
-                                                        }
-                                                        placeholder="20.000"
-                                                        className="w-full rounded-lg border border-stone-200 bg-white py-1.5 pr-2 pl-9 text-xs font-bold text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
-                                                    />
-                                                </div>
-                                                <div className="relative w-1/3">
-                                                    <span className="pointer-events-none absolute top-1.5 left-2 text-[10px] text-stone-400">
-                                                        HPP:
-                                                    </span>
-                                                    <input
-                                                        type="number"
-                                                        min="0"
-                                                        value={v.cost_price}
-                                                        onChange={(e) =>
-                                                            handleVariantChange(
-                                                                idx,
-                                                                'cost_price',
-                                                                e.target.value === '' ? '' : Number(e.target.value),
-                                                            )
-                                                        }
-                                                        placeholder="8.000"
-                                                        className="w-full rounded-lg border border-stone-200 bg-white py-1.5 pr-2 pl-9 text-xs text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
-                                                    />
-                                                </div>
-                                                {variants.length > 1 && (
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => handleRemoveVariantRow(idx)}
-                                                        className="cursor-pointer text-stone-400 hover:text-rose-600"
-                                                        title="Hapus varian ini"
-                                                    >
-                                                        <Trash2 className="h-3.5 w-3.5" />
-                                                    </button>
-                                                )}
-                                            </div>
-
-                                            {/* Preview Margin Laba */}
-                                            {sellingPrice > 0 && costPrice > 0 && (
-                                                <div className="flex items-center justify-between px-1 text-[10px] font-medium text-stone-500 dark:text-stone-400">
-                                                    <span>
-                                                        Laba Kotor:{' '}
-                                                        <strong className={profit >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600'}>
-                                                            Rp {formatRp(profit)}
-                                                        </strong>
-                                                    </span>
-                                                    <span className="rounded bg-stone-200/80 px-1.5 py-0.2 font-bold text-stone-700 dark:bg-stone-700 dark:text-stone-300">
-                                                        Margin: {marginPct}%
-                                                    </span>
-                                                </div>
-                                            )}
+                                {variants.map((v, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50/70 p-2.5 dark:border-stone-700 dark:bg-stone-800/50"
+                                    >
+                                        <input
+                                            type="text"
+                                            required
+                                            value={v.label}
+                                            onChange={(e) =>
+                                                handleVariantChange(idx, 'label', e.target.value)
+                                            }
+                                            placeholder="Nama Varian (Hot, Ice, Large...)"
+                                            className="flex-1 rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-xs text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
+                                        />
+                                        <div className="relative w-36 sm:w-44">
+                                            <span className="pointer-events-none absolute top-1.5 left-2.5 text-xs font-semibold text-stone-400">
+                                                Rp
+                                            </span>
+                                            <input
+                                                type="number"
+                                                required
+                                                min="0"
+                                                value={v.price}
+                                                onChange={(e) =>
+                                                    handleVariantChange(
+                                                        idx,
+                                                        'price',
+                                                        e.target.value === '' ? '' : Number(e.target.value),
+                                                    )
+                                                }
+                                                placeholder="Harga..."
+                                                className="w-full rounded-lg border border-stone-200 bg-white py-1.5 pr-2.5 pl-8 text-xs font-bold text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
+                                            />
                                         </div>
-                                    );
-                                })}
+                                        {variants.length > 1 && (
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveVariantRow(idx)}
+                                                className="cursor-pointer text-stone-400 hover:text-rose-600"
+                                                title="Hapus varian ini"
+                                            >
+                                                <Trash2 className="h-4 w-4" />
+                                            </button>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
@@ -878,11 +834,6 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                                                 className="rounded bg-stone-100 px-2 py-0.5 text-[11px] font-medium text-stone-700 dark:bg-stone-800 dark:text-stone-300"
                                                             >
                                                                 {v.label}: <strong>Rp {formatRp(v.price)}</strong>
-                                                                {v.cost_price ? (
-                                                                    <span className="ml-1 text-[10px] text-stone-400">
-                                                                        (HPP: {formatRp(v.cost_price)})
-                                                                    </span>
-                                                                ) : null}
                                                             </span>
                                                         ))
                                                     ) : (
