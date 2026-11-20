@@ -11737,7 +11737,7 @@ function PosContent({
                                 </div>
                             )}
 
-                            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                            <div>
                                 <a
                                     href={generateWhatsAppReceiptUrl(
                                         completedReceipt,
@@ -11745,63 +11745,11 @@ function PosContent({
                                     )}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-center text-xs font-bold text-emerald-800 shadow-2xs transition hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 dark:hover:bg-emerald-900/50"
+                                    className="flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-center text-xs font-bold text-emerald-800 shadow-2xs transition hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 dark:hover:bg-emerald-900/50"
                                 >
                                     <Share2 className="h-4 w-4" />
                                     <span>Kirim Struk via WA</span>
                                 </a>
-
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        printA4InvoiceWeb({
-                                            store_name:
-                                                completedReceipt.store_name,
-                                            tagline: completedReceipt.tagline,
-                                            address: completedReceipt.address,
-                                            phone: completedReceipt.phone,
-                                            instagram:
-                                                completedReceipt.instagram,
-                                            cashier_name:
-                                                completedReceipt.cashier_name,
-                                            customer_name:
-                                                completedReceipt.customer_name,
-                                            customer_phone:
-                                                completedReceipt.customer_phone,
-                                            customer_address:
-                                                completedReceipt.customer_address,
-                                            shipping_cost:
-                                                completedReceipt.shipping_cost,
-                                            shipping_courier:
-                                                completedReceipt.shipping_courier,
-                                            notes: `No. Struk: #${completedReceipt.order_number} | Metode: ${completedReceipt.payment_method_label}`,
-                                            items: completedReceipt.items.map(
-                                                (i) => ({
-                                                    product_name:
-                                                        i.product_name,
-                                                    variant_label:
-                                                        i.variant_label,
-                                                    quantity: i.quantity,
-                                                    price: i.price,
-                                                    subtotal: i.subtotal,
-                                                }),
-                                            ),
-                                            subtotal: completedReceipt.subtotal,
-                                            discount_amount:
-                                                completedReceipt.discount_amount,
-                                            total_amount:
-                                                completedReceipt.total_amount,
-                                            date: completedReceipt.date,
-                                        });
-                                        showToast(
-                                            'Mengunduh file PDF Invoice A4...',
-                                        );
-                                    }}
-                                    className="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#273a41] px-3 py-2.5 text-xs font-bold text-white shadow-2xs transition hover:bg-[#1e2e34] dark:bg-stone-800 dark:hover:bg-stone-700"
-                                >
-                                    <Download className="h-4 w-4" />
-                                    <span>Download PDF Invoice</span>
-                                </button>
                             </div>
                         </div>
 
@@ -12666,16 +12614,6 @@ function PosContent({
                                             ? 'Tersalin!'
                                             : 'Salin Struk'}
                                     </span>
-                                </button>
-
-                                <button
-                                    type="button"
-                                    onClick={handleDownloadA4InvoicePdf}
-                                    className="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#273a41] px-3.5 py-2.5 text-xs font-bold text-white shadow-2xs transition hover:bg-[#1e2e34] active:scale-95 dark:bg-stone-800 dark:hover:bg-stone-700"
-                                    title="Download atau Cetak Invoice A4 format PDF"
-                                >
-                                    <Download className="h-4 w-4" />
-                                    <span>Download PDF Invoice</span>
                                 </button>
 
                                 <button
