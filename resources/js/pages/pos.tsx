@@ -4844,7 +4844,7 @@ function PosContent({
                                                 : 'border border-stone-200 bg-white text-stone-600 hover:bg-stone-50 hover:text-stone-900 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700 dark:hover:text-white'
                                         }`}
                                     >
-                                        Semua Kopi ({products.length})
+                                        Semua Menu ({products.length})
                                     </button>
                                     {posCategories.map((cat) => {
                                         const count = products.filter((p) =>
