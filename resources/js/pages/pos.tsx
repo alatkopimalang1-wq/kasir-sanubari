@@ -4435,7 +4435,7 @@ function PosContent({
                                 }`}
                             >
                                 <Coffee className="h-5 w-5 shrink-0 stroke-[2.2] text-amber-600 dark:text-amber-400" />
-                                <span>Menu Cafe (Food & Drink)</span>
+                                <span>Atur Menu</span>
                                 <span className="ml-auto rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">
                                     Baru
                                 </span>
@@ -6321,7 +6321,7 @@ function PosContent({
                                 className="flex shrink-0 cursor-pointer items-center gap-1.5 rounded-xl bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs transition hover:bg-amber-700"
                             >
                                 <Coffee className="h-3.5 w-3.5" />
-                                <span>+ Kelola Menu Cafe</span>
+                                <span>+ Atur Menu</span>
                             </button>
                             <input
                                 type="text"
@@ -8658,7 +8658,7 @@ function PosContent({
                                 }`}
                             >
                                 <Coffee className="h-4 w-4 shrink-0" />
-                                <span>Menu Cafe</span>
+                                <span>Atur Menu</span>
                                 <span className="rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] text-stone-600 dark:bg-stone-800 dark:text-stone-300">
                                     {products.length}
                                 </span>

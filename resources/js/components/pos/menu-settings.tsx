@@ -398,7 +398,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                 <div className="min-w-0 flex-1 space-y-1">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                         <h3 className="text-sm font-bold text-brand-950 dark:text-brand-100">
-                            Pengaturan Menu Cafe (Makanan & Minuman)
+                            Atur Menu (Makanan & Minuman)
                         </h3>
                         <span className="shrink-0 rounded-full bg-brand-700 px-2.5 py-0.5 text-[10px] font-bold text-white">
                             {products.length} Menu Terdaftar
