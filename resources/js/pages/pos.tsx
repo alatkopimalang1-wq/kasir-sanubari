@@ -5144,25 +5144,25 @@ function PosContent({
 
                                                 <div className="flex flex-1 flex-col justify-between">
                                                     <div>
-                                                        <h3 className={`line-clamp-2 font-bold text-stone-900 transition-colors group-hover:text-brand-700 dark:text-white dark:group-hover:text-emerald-400 ${
+                                                        <h3 className={`line-clamp-2 font-extrabold tracking-tight text-stone-900 transition-colors group-hover:text-brand-700 dark:text-white dark:group-hover:text-emerald-400 ${
                                                             gridDensity === 'compact'
-                                                                ? 'min-h-[22px] text-[10px] leading-tight sm:min-h-[24px] sm:text-[11px]'
+                                                                ? 'min-h-[28px] text-xs leading-snug sm:min-h-[32px] sm:text-sm'
                                                                 : gridDensity === 'comfortable'
-                                                                ? 'min-h-[30px] text-xs leading-snug sm:min-h-[36px] sm:text-sm'
-                                                                : 'min-h-[26px] text-[11px] leading-tight sm:min-h-[28px] sm:text-xs'
+                                                                ? 'min-h-[40px] text-base leading-snug sm:min-h-[48px] sm:text-lg'
+                                                                : 'min-h-[34px] text-sm leading-snug sm:min-h-[40px] sm:text-base'
                                                         }`}>
                                                             {product.name}
                                                         </h3>
                                                     </div>
 
-                                                    <div className="mt-1.5 flex items-center justify-between border-t border-stone-100 pt-1.5 dark:border-stone-800">
-                                                        <div>
-                                                            <div className={`leading-tight font-black text-brand-700 dark:text-emerald-400 ${
+                                                    <div className="mt-2 flex items-center justify-between border-t border-stone-100 pt-2 dark:border-stone-800">
+                                                        <div className="min-w-0 pr-1">
+                                                            <div className={`leading-tight font-black tracking-tight text-brand-800 dark:text-emerald-400 ${
                                                                 gridDensity === 'compact'
-                                                                    ? 'text-[10px] sm:text-[11px]'
-                                                                    : gridDensity === 'comfortable'
                                                                     ? 'text-xs sm:text-sm'
-                                                                    : 'text-[11px] sm:text-xs'
+                                                                    : gridDensity === 'comfortable'
+                                                                    ? 'text-base sm:text-lg'
+                                                                    : 'text-sm sm:text-base'
                                                             }`}>
                                                                 Rp{' '}
                                                                 {hasMultipleVariants
@@ -5191,7 +5191,7 @@ function PosContent({
                                                                       )}
                                                             </div>
                                                             {hasMultipleVariants && (
-                                                                <span className="block text-[9px] font-medium text-stone-500 dark:text-stone-400">
+                                                                <span className="block truncate text-[10px] font-semibold text-stone-500 sm:text-[11px] dark:text-stone-400">
                                                                     s/d Rp{' '}
                                                                     {formatRp(
                                                                         product.max_price ||
@@ -5213,7 +5213,7 @@ function PosContent({
                                                             )}
                                                             {!hasMultipleVariants &&
                                                                 singleVariant && (
-                                                                    <span className="block text-[9px] font-medium text-stone-500 dark:text-stone-400">
+                                                                    <span className="block truncate text-[10px] font-semibold text-stone-500 sm:text-[11px] dark:text-stone-400">
                                                                         {
                                                                             singleVariant.label
                                                                         }
@@ -5228,14 +5228,20 @@ function PosContent({
                                                             }
                                                             className={`flex shrink-0 items-center justify-center rounded-lg border border-brand-200 bg-brand-50 text-brand-700 shadow-2xs transition-colors group-hover:border-transparent group-hover:bg-brand-700 group-hover:text-white dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200 ${
                                                                 gridDensity === 'compact'
-                                                                    ? 'h-5 w-5 sm:h-6 sm:w-6'
+                                                                    ? 'h-6 w-6 sm:h-7 sm:w-7'
                                                                     : gridDensity === 'comfortable'
-                                                                    ? 'h-7 w-7 sm:h-8 sm:w-8'
-                                                                    : 'h-6 w-6 sm:h-7 sm:w-7'
+                                                                    ? 'h-8 w-8 sm:h-9 sm:w-9'
+                                                                    : 'h-7 w-7 sm:h-8 sm:w-8'
                                                             }`}
                                                             aria-label="Tambah ke keranjang"
                                                         >
-                                                            <Plus className={gridDensity === 'compact' ? 'h-3 w-3' : 'h-3.5 w-3.5'} />
+                                                            <Plus className={`stroke-[2.5] ${
+                                                                gridDensity === 'compact'
+                                                                    ? 'h-3.5 w-3.5'
+                                                                    : gridDensity === 'comfortable'
+                                                                    ? 'h-4.5 w-4.5'
+                                                                    : 'h-4 w-4'
+                                                            }`} />
                                                         </button>
                                                     </div>
                                                 </div>
@@ -10073,12 +10079,12 @@ function PosContent({
                                                     <span className="rounded border border-brand-800 bg-brand-950 px-1.5 py-0.5 text-[8px] font-bold text-amber-300 uppercase">
                                                         HOUSEBLEND
                                                     </span>
-                                                    <h5 className={`font-bold text-stone-900 dark:text-white ${
+                                                    <h5 className={`font-extrabold text-stone-900 dark:text-white ${
                                                         gridDensity === 'compact'
-                                                            ? 'text-[11px]'
+                                                            ? 'text-xs'
                                                             : gridDensity === 'comfortable'
-                                                            ? 'text-sm'
-                                                            : 'text-xs'
+                                                            ? 'text-base'
+                                                            : 'text-sm'
                                                     }`}>
                                                         Funky Berry Natural Anaerobic
                                                     </h5>
@@ -10088,8 +10094,8 @@ function PosContent({
                                                         gridDensity === 'compact'
                                                             ? 'text-xs'
                                                             : gridDensity === 'comfortable'
-                                                            ? 'text-sm'
-                                                            : 'text-xs'
+                                                            ? 'text-base'
+                                                            : 'text-sm'
                                                     }`}>
                                                         Rp 75.000
                                                     </span>
@@ -10952,7 +10958,7 @@ function PosContent({
                                     className="h-12 w-12 rounded-xl border border-stone-100 bg-stone-50 object-cover dark:border-stone-700 dark:bg-stone-800"
                                 />
                                 <div>
-                                    <h3 className="text-sm font-bold text-brand-950 dark:text-white">
+                                    <h3 className="text-base font-extrabold text-brand-950 dark:text-white">
                                         {variantPickerProduct.name}
                                     </h3>
                                     <p className="text-xs text-stone-500 dark:text-stone-300">
@@ -10981,7 +10987,7 @@ function PosContent({
                                 >
                                     <div className="flex items-center gap-2">
                                         <div className="h-2.5 w-2.5 rounded-full bg-brand-700 dark:bg-amber-400" />
-                                        <span className="text-sm font-semibold text-stone-800 group-hover:text-brand-950 dark:text-stone-100 dark:group-hover:text-white">
+                                        <span className="text-sm font-bold text-stone-800 group-hover:text-brand-950 sm:text-base dark:text-stone-100 dark:group-hover:text-white">
                                             {v.label}
                                         </span>
                                         {v.sku && (
@@ -10990,7 +10996,7 @@ function PosContent({
                                             </span>
                                         )}
                                     </div>
-                                    <div className="text-sm font-bold text-brand-700 group-hover:text-brand-800 dark:text-emerald-400 dark:group-hover:text-emerald-300">
+                                    <div className="text-sm font-black text-brand-700 group-hover:text-brand-800 sm:text-base dark:text-emerald-400 dark:group-hover:text-emerald-300">
                                         Rp {formatRp(v.price)}
                                     </div>
                                 </button>
