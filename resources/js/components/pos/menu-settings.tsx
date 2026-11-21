@@ -296,6 +296,8 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
 
             if (imageFile) {
                 formData.append('image', imageFile);
+            } else if (!imagePreview && editingProductId) {
+                formData.append('remove_image', '1');
             }
 
             const isEdit = editingProductId !== null;
@@ -729,6 +731,15 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                         <img
                                             src={imagePreview}
                                             alt="Preview"
+                                            onError={(e) => {
+                                                const target = e.currentTarget;
+                                                const auto = getAutoMenuImage(name || 'Menu');
+                                                if (!target.src.endsWith(auto)) {
+                                                    target.src = auto;
+                                                } else if (!target.src.endsWith('/brand/logo-circle.png')) {
+                                                    target.src = '/brand/logo-circle.png';
+                                                }
+                                            }}
                                             className="h-full w-full object-cover"
                                         />
                                         <button

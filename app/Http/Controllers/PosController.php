@@ -2207,6 +2207,11 @@ class PosController extends Controller
                     $imageUrl = \App\Services\ProductImageMatcher::getUrl((string) $prodName, $firstCatName);
                 }
 
+                if ($imageUrl && ! str_starts_with($imageUrl, '/brand/')) {
+                    $ts = $product->updated_at ? $product->updated_at->timestamp : time();
+                    $imageUrl = str_contains($imageUrl, '?') ? "{$imageUrl}&v={$ts}" : "{$imageUrl}?v={$ts}";
+                }
+
                 return [
                     'id' => $product->id,
                     'name' => (string) $prodName,
@@ -2304,9 +2309,16 @@ class PosController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('products', 'public');
+            $dest = public_path('storage/' . $path);
+            if (! file_exists(dirname($dest))) {
+                @mkdir(dirname($dest), 0755, true);
+            }
+            @copy(storage_path('app/public/' . $path), $dest);
+
             $product->images()->create([
                 'path' => $path,
                 'is_primary' => true,
+                'alt' => $name,
             ]);
         } else {
             $cat = ! empty($validated['category_id']) ? Category::find($validated['category_id']) : null;
@@ -2408,11 +2420,30 @@ class PosController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('products', 'public');
+            $dest = public_path('storage/' . $path);
+            if (! file_exists(dirname($dest))) {
+                @mkdir(dirname($dest), 0755, true);
+            }
+            @copy(storage_path('app/public/' . $path), $dest);
+
             $product->images()->update(['is_primary' => false]);
             $product->images()->create([
                 'path' => $path,
                 'is_primary' => true,
+                'alt' => $name,
             ]);
+            $product->touch();
+        } elseif ($request->boolean('remove_image')) {
+            $product->images()->delete();
+            $cat = ! empty($validated['category_id']) ? Category::find($validated['category_id']) : $product->categories->first();
+            $catName = $cat ? ($cat->getTranslation('name', 'id') ?? $cat->name) : null;
+            $autoPath = \App\Services\ProductImageMatcher::match($name, $catName);
+            $product->images()->create([
+                'path' => $autoPath,
+                'is_primary' => true,
+                'alt' => $name,
+            ]);
+            $product->touch();
         } elseif (! $product->images()->exists()) {
             $cat = ! empty($validated['category_id']) ? Category::find($validated['category_id']) : $product->categories->first();
             $catName = $cat ? ($cat->getTranslation('name', 'id') ?? $cat->name) : null;
@@ -2422,6 +2453,9 @@ class PosController extends Controller
                 'is_primary' => true,
                 'alt' => $name,
             ]);
+            $product->touch();
+        } else {
+            $product->touch();
         }
 
         return response()->json([

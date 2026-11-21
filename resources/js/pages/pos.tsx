@@ -790,12 +790,16 @@ function PosContent({
         if (Array.isArray(initialProducts) && initialProducts.length > 0) {
             const normalized = initialProducts.map(normalizePosProduct);
             setProducts((prev) => {
-                if (
+                const isIdentical =
                     prev.length === normalized.length &&
-                    prev[0]?.id === normalized[0]?.id &&
-                    prev[0]?.min_price === normalized[0]?.min_price &&
-                    prev[prev.length - 1]?.id === normalized[normalized.length - 1]?.id
-                ) {
+                    prev.every(
+                        (p, idx) =>
+                            p.id === normalized[idx]?.id &&
+                            p.image === normalized[idx]?.image &&
+                            p.min_price === normalized[idx]?.min_price &&
+                            p.name === normalized[idx]?.name,
+                    );
+                if (isIdentical) {
                     return prev;
                 }
                 return normalized;
@@ -10502,7 +10506,21 @@ function PosContent({
                         <MenuSettings
                             products={products}
                             categories={categories}
-                            onProductsChange={(newProds) => setProducts(newProds as any)}
+                            onProductsChange={(newProds) => {
+                                const normalized = (newProds as any[]).map(normalizePosProduct);
+                                setProducts(normalized);
+                                try {
+                                    localStorage.setItem(
+                                        POS_CACHED_CATALOG_STORAGE_KEY,
+                                        JSON.stringify({
+                                            products: normalized,
+                                            categories,
+                                            updated_at: new Date().toISOString(),
+                                        }),
+                                    );
+                                } catch {}
+                                precacheProductImages(normalized);
+                            }}
                             showToast={showToast}
                         />
                     )}
