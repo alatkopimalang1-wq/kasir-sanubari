@@ -51,7 +51,7 @@
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app--Gi2L7Gh.js",
+    "file": "assets/app-D5WnWVaJ.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -66,7 +66,7 @@
     ]
   },
   "resources/js/pages/pos.tsx": {
-    "file": "assets/pos-C6WDqc_l.js",
+    "file": "assets/pos-B7ZYsNcQ.js",
     "name": "pos",
     "src": "resources/js/pages/pos.tsx",
     "isDynamicEntry": true,
@@ -92,7 +92,7 @@
     ]
   },
   "resources/js/pages/pos/login.tsx": {
-    "file": "assets/login-DMQkH27E.js",
+    "file": "assets/login-8PVt2C0-.js",
     "name": "login",
     "src": "resources/js/pages/pos/login.tsx",
     "isDynamicEntry": true,

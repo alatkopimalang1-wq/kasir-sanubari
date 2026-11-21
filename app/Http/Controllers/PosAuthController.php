@@ -106,15 +106,21 @@ class PosAuthController extends Controller
             return $this->streamInvoicePdfFromPayload((string) $request->query('payload'));
         }
 
-        $filePath = public_path('downloads/Kasir-Sanubari.apk');
-
-        if (file_exists($filePath)) {
-            return response()->download($filePath, 'Kasir-Sanubari.apk', [
+        $posPath = public_path('downloads/Sanubari-POS.apk');
+        if (file_exists($posPath)) {
+            return response()->download($posPath, 'Sanubari-POS.apk', [
                 'Content-Type' => 'application/vnd.android.package-archive',
             ]);
         }
 
-        return redirect()->away('https://github.com/alatkopimalang1-wq/sanubari/releases/download/pos-apk-latest/Kasir-Sanubari.apk');
+        $kasirPath = public_path('downloads/Kasir-Sanubari.apk');
+        if (file_exists($kasirPath)) {
+            return response()->download($kasirPath, 'Kasir-Sanubari.apk', [
+                'Content-Type' => 'application/vnd.android.package-archive',
+            ]);
+        }
+
+        return redirect()->away('https://github.com/alatkopimalang1-wq/sanubari/releases/download/pos-apk-latest/Sanubari-POS.apk');
     }
 
     /**

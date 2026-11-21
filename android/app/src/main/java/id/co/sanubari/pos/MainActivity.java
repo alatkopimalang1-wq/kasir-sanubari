@@ -208,6 +208,22 @@ public class MainActivity extends AppCompatActivity {
         settings.setDisplayZoomControls(false);
         settings.setMediaPlaybackRequiresUserGesture(false);
 
+        // Hardware offscreen pre-rasterization for smooth 60fps scrolling
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            settings.setOffscreenPreRaster(true);
+        }
+
+        // Disable SafeBrowsing overhead to eliminate Google cloud verification latency
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            settings.setSafeBrowsingEnabled(false);
+        }
+
+        // High priority rendering & mixed content allow
+        settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
         // Aggressive Caching for Instant Startup & Offline Resilience
         if (isNetworkAvailable()) {
             settings.setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -215,12 +231,8 @@ public class MainActivity extends AppCompatActivity {
             settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            settings.setSafeBrowsingEnabled(true);
-        }
-
-        // Custom User-Agent identifying modern Sanubari POS Android v2.0 with Native Bluetooth
-        String customUA = settings.getUserAgentString() + " SanubariPOS-Android/2.0";
+        // Custom User-Agent identifying modern Sanubari POS Android v2.2 with Native Bluetooth
+        String customUA = settings.getUserAgentString() + " SanubariPOS-Android/2.2";
         settings.setUserAgentString(customUA);
 
         // Expose Native Android Bluetooth & Print Bridge to JavaScript

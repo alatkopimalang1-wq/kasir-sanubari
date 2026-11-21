@@ -42,6 +42,7 @@ jobs:
         run: |
           mkdir -p build-output
           cp android/app/build/outputs/apk/debug/app-debug.apk build-output/Sanubari-POS.apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk build-output/Kasir-Sanubari.apk
           echo "APK successfully built:"
           ls -lh build-output/
 
@@ -56,8 +57,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: pos-apk-latest
-          name: Sanubari POS Android APK (Latest v2.1 - Native Bluetooth)
-          files: build-output/Sanubari-POS.apk
+          name: Sanubari POS Android APK (Latest v2.2 - Ultra Smooth 60fps & Native Bluetooth)
+          files: |
+            build-output/Sanubari-POS.apk
+            build-output/Kasir-Sanubari.apk
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

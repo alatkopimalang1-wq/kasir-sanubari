@@ -576,30 +576,54 @@ export const normalizePosProduct = (p: any): Product => {
 
 /**
  * Pre-cache product images into Service Worker / Browser Cache API
- * so that they load instantaneously without downloading again on app restart.
+ * using staggered idle batches so it never blocks UI or causes network congestion.
  */
 export const precacheProductImages = async (productList: Product[]) => {
     if (typeof window === 'undefined' || !('caches' in window)) return;
     try {
         const cache = await caches.open('sanubari-pos-static-v6');
-        for (const p of productList) {
-            if (
-                p.image &&
-                !p.image.endsWith('/brand/logo-circle.png') &&
-                (p.image.startsWith('/storage/') || p.image.startsWith('/'))
-            ) {
-                const match = await cache.match(p.image);
-                if (!match) {
-                    fetch(p.image)
-                        .then((res) => {
-                            if (res && res.status === 200) {
-                                cache.put(p.image, res);
-                            }
-                        })
-                        .catch(() => {});
-                }
+        const imagesToCache = productList
+            .map((p) => p.image || getAutoMenuImage(p.name))
+            .filter(
+                (img): img is string =>
+                    Boolean(img) &&
+                    !img!.endsWith('/brand/logo-circle.png') &&
+                    (img!.startsWith('/storage/') || img!.startsWith('/'))
+            );
+
+        if (imagesToCache.length === 0) return;
+
+        // Schedule work during idle periods to keep main thread 60fps
+        const scheduleWork = (fn: () => void) => {
+            if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+                (window as any).requestIdleCallback(fn, { timeout: 2000 });
+            } else {
+                setTimeout(fn, 200);
             }
-        }
+        };
+
+        scheduleWork(async () => {
+            // Process in gentle batches of 2 with pause
+            for (let i = 0; i < imagesToCache.length; i += 2) {
+                const batch = imagesToCache.slice(i, i + 2);
+                await Promise.all(
+                    batch.map(async (url) => {
+                        try {
+                            const match = await cache.match(url);
+                            if (!match) {
+                                const res = await fetch(url, { cache: 'force-cache' });
+                                if (res && res.status === 200) {
+                                    await cache.put(url, res);
+                                }
+                            }
+                        } catch {
+                            // ignore background fetch error
+                        }
+                    })
+                );
+                await new Promise((r) => setTimeout(r, 120));
+            }
+        });
     } catch {
         // Silently continue if cache API is restricted
     }
@@ -5035,6 +5059,10 @@ function PosContent({
                                         return (
                                             <div
                                                 key={product.id}
+                                                style={{
+                                                    contentVisibility: 'auto',
+                                                    containIntrinsicSize: '220px',
+                                                }}
                                                 onClick={() =>
                                                     handleProductClick(product)
                                                 }

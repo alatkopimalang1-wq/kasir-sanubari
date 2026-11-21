@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SanubariPOS"
         android:hardwareAccelerated="true"
+        android:largeHeap="true"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
