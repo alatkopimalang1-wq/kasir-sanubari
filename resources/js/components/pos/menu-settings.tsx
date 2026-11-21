@@ -83,6 +83,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
     const [categoryId, setCategoryId] = useState<number | ''>('');
     const [description, setDescription] = useState('');
     const [stockStatus, setStockStatus] = useState<'in_stock' | 'out_of_stock'>('in_stock');
+    const [hasVariants, setHasVariants] = useState<boolean>(false);
     const [variants, setVariants] = useState<VariantFormItem[]>([
         { label: 'Standar', price: '', cost_price: 0, stock_status: 'in_stock' },
     ]);
@@ -106,7 +107,43 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
         return num.toLocaleString('id-ID');
     };
 
+    const handleEnableVariants = () => {
+        setHasVariants(true);
+        if (variants.length <= 1) {
+            const currentPrice = variants[0]?.price ?? '';
+            setVariants([
+                {
+                    id: variants[0]?.id,
+                    label: variants[0]?.label && variants[0]?.label !== 'Standar' ? variants[0].label : 'Reguler',
+                    price: currentPrice,
+                    cost_price: variants[0]?.cost_price ?? 0,
+                    stock_status: variants[0]?.stock_status ?? 'in_stock',
+                },
+                {
+                    label: 'Large',
+                    price: '',
+                    cost_price: 0,
+                    stock_status: 'in_stock',
+                },
+            ]);
+        }
+    };
+
+    const handleDisableVariants = () => {
+        setHasVariants(false);
+        setVariants((prev) => [
+            {
+                id: prev[0]?.id,
+                label: 'Standar',
+                price: prev[0]?.price ?? '',
+                cost_price: prev[0]?.cost_price ?? 0,
+                stock_status: prev[0]?.stock_status ?? 'in_stock',
+            },
+        ]);
+    };
+
     const handleAddVariantRow = () => {
+        setHasVariants(true);
         setVariants((prev) => [
             ...prev,
             { label: `Varian ${prev.length + 1}`, price: '', cost_price: 0, stock_status: 'in_stock' },
@@ -114,8 +151,15 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
     };
 
     const handleRemoveVariantRow = (index: number) => {
-        if (variants.length <= 1) return;
-        setVariants((prev) => prev.filter((_, i) => i !== index));
+        if (variants.length <= 1) {
+            handleDisableVariants();
+            return;
+        }
+        const updated = variants.filter((_, i) => i !== index);
+        setVariants(updated);
+        if (updated.length <= 1) {
+            setHasVariants(false);
+        }
     };
 
     const handleVariantChange = (index: number, field: keyof VariantFormItem, val: any) => {
@@ -144,6 +188,9 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
         setStockStatus(product.stock_status === 'out_of_stock' ? 'out_of_stock' : 'in_stock');
         setImageFile(null);
         setImagePreview(product.image || null);
+
+        const hasMultipleVariants = Array.isArray(product.variants) && product.variants.length > 1;
+        setHasVariants(hasMultipleVariants);
 
         if (Array.isArray(product.variants) && product.variants.length > 0) {
             setVariants(
@@ -175,6 +222,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
         setCategoryId('');
         setDescription('');
         setStockStatus('in_stock');
+        setHasVariants(false);
         setVariants([{ label: 'Standar', price: '', cost_price: '', stock_status: 'in_stock' }]);
         setImageFile(null);
         setImagePreview(null);
@@ -192,15 +240,23 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
         }
 
         // Validate variants
-        for (let i = 0; i < variants.length; i++) {
-            const v = variants[i];
-            if (!v.label.trim()) {
-                setFormError(`Label varian baris #${i + 1} tidak boleh kosong.`);
+        if (!hasVariants) {
+            const singlePrice = variants[0]?.price;
+            if (singlePrice === '' || Number(singlePrice) < 0) {
+                setFormError('Harga jual menu wajib diisi dengan benar.');
                 return;
             }
-            if (v.price === '' || Number(v.price) < 0) {
-                setFormError(`Harga jual varian "${v.label}" wajib diisi dengan benar.`);
-                return;
+        } else {
+            for (let i = 0; i < variants.length; i++) {
+                const v = variants[i];
+                if (!v.label.trim()) {
+                    setFormError(`Label varian baris #${i + 1} tidak boleh kosong.`);
+                    return;
+                }
+                if (v.price === '' || Number(v.price) < 0) {
+                    setFormError(`Harga jual varian "${v.label}" wajib diisi dengan benar.`);
+                    return;
+                }
             }
         }
 
@@ -215,14 +271,26 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
             if (description.trim()) formData.append('description', description.trim());
             formData.append('stock_status', stockStatus);
 
-            variants.forEach((v, idx) => {
+            const variantsToSubmit = !hasVariants
+                ? [
+                      {
+                          id: variants[0]?.id,
+                          label: variants[0]?.label?.trim() || 'Standar',
+                          price: variants[0]?.price ?? 0,
+                          cost_price: variants[0]?.cost_price ?? '',
+                          stock_status: stockStatus,
+                      },
+                  ]
+                : variants;
+
+            variantsToSubmit.forEach((v, idx) => {
                 if (v.id) formData.append(`variants[${idx}][id]`, String(v.id));
                 formData.append(`variants[${idx}][label]`, v.label.trim());
                 formData.append(`variants[${idx}][price]`, String(Number(v.price) || 0));
                 if (v.cost_price !== '') {
                     formData.append(`variants[${idx}][cost_price]`, String(Number(v.cost_price) || 0));
                 }
-                formData.append(`variants[${idx}][stock_status]`, v.stock_status);
+                formData.append(`variants[${idx}][stock_status]`, v.stock_status || stockStatus);
             });
 
             if (imageFile) {
@@ -512,65 +580,114 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                             </div>
                         </div>
 
-                        {/* TABEL VARIAN & HARGA JUAL */}
-                        <div className="space-y-2 pt-1">
-                            <div className="flex items-center justify-between">
-                                <label className="font-semibold text-stone-700 dark:text-stone-300">
-                                    Varian & Harga Jual <span className="text-rose-500">*</span>
-                                </label>
-                                <button
-                                    type="button"
-                                    onClick={handleAddVariantRow}
-                                    className="flex cursor-pointer items-center gap-1 font-bold text-brand-700 hover:text-brand-800 dark:text-brand-400"
-                                >
-                                    <Plus className="h-3.5 w-3.5" />
-                                    <span>+ Varian Lain</span>
-                                </button>
-                            </div>
-
-                            <div className="space-y-2">
-                                {variants.map((v, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-stone-50/70 p-2.5 sm:flex-row sm:items-center dark:border-stone-700 dark:bg-stone-800/50"
+                        {/* HARGA JUAL ATAU TABEL VARIAN */}
+                        {!hasVariants ? (
+                            <div className="space-y-1.5 pt-1">
+                                <div className="flex items-center justify-between">
+                                    <label className="font-semibold text-stone-700 dark:text-stone-300">
+                                        Harga Jual <span className="text-rose-500">*</span>
+                                    </label>
+                                    <button
+                                        type="button"
+                                        onClick={handleEnableVariants}
+                                        className="flex cursor-pointer items-center gap-1 text-xs font-bold text-brand-700 hover:text-brand-800 dark:text-brand-400"
                                     >
-                                        <div className="min-w-0 flex-1">
-                                            <span className="mb-1 block text-[10px] font-semibold text-stone-500 sm:hidden">
-                                                Nama Varian {variants.length > 1 ? `#${idx + 1}` : ''}
-                                            </span>
-                                            <input
-                                                type="text"
-                                                required
-                                                value={v.label}
-                                                onChange={(e) =>
-                                                    handleVariantChange(idx, 'label', e.target.value)
-                                                }
-                                                placeholder={idx === 0 ? 'Standar / Reguler' : 'Hot, Ice, Large, dll'}
-                                                className="w-full rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-xs text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
-                                            />
-                                        </div>
-                                        <div className="flex items-center gap-2 sm:w-44">
-                                            <div className="relative min-w-0 flex-1 sm:w-full">
-                                                <span className="pointer-events-none absolute top-1.5 left-2.5 text-xs font-semibold text-stone-400">
-                                                    Rp
+                                        <Plus className="h-3.5 w-3.5" />
+                                        <span>+ Tambah Varian Menu</span>
+                                    </button>
+                                </div>
+                                <div className="relative">
+                                    <span className="pointer-events-none absolute top-2 left-3 text-xs font-bold text-stone-400">
+                                        Rp
+                                    </span>
+                                    <input
+                                        type="number"
+                                        required
+                                        min="0"
+                                        value={variants[0]?.price ?? ''}
+                                        onChange={(e) =>
+                                            handleVariantChange(
+                                                0,
+                                                'price',
+                                                e.target.value === '' ? '' : Number(e.target.value),
+                                            )
+                                        }
+                                        placeholder="Contoh: 25000"
+                                        className="w-full rounded-xl border border-stone-200 bg-stone-50 py-2 pr-3 pl-9 text-xs font-bold text-stone-900 focus:border-brand-600 focus:bg-white focus:ring-1 focus:ring-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white dark:focus:bg-stone-800"
+                                    />
+                                </div>
+                                <p className="text-[11px] text-stone-500 dark:text-stone-400">
+                                    Menu tanpa varian hanya perlu mengisi harga jual langsung di atas.
+                                </p>
+                            </div>
+                        ) : (
+                            <div className="space-y-2 pt-1">
+                                <div className="flex items-center justify-between">
+                                    <label className="font-semibold text-stone-700 dark:text-stone-300">
+                                        Varian & Harga Jual <span className="text-rose-500">*</span>
+                                    </label>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={handleDisableVariants}
+                                            className="cursor-pointer text-[11px] font-semibold text-stone-500 hover:text-rose-600 dark:text-stone-400 dark:hover:text-rose-400"
+                                        >
+                                            Hapus Varian (1 Harga Saja)
+                                        </button>
+                                        <span className="text-stone-300 dark:text-stone-700">•</span>
+                                        <button
+                                            type="button"
+                                            onClick={handleAddVariantRow}
+                                            className="flex cursor-pointer items-center gap-1 font-bold text-brand-700 hover:text-brand-800 dark:text-brand-400"
+                                        >
+                                            <Plus className="h-3.5 w-3.5" />
+                                            <span>+ Varian Lain</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    {variants.map((v, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-stone-50/70 p-2.5 sm:flex-row sm:items-center dark:border-stone-700 dark:bg-stone-800/50"
+                                        >
+                                            <div className="min-w-0 flex-1">
+                                                <span className="mb-1 block text-[10px] font-semibold text-stone-500 sm:hidden">
+                                                    Nama Varian {variants.length > 1 ? `#${idx + 1}` : ''}
                                                 </span>
                                                 <input
-                                                    type="number"
+                                                    type="text"
                                                     required
-                                                    min="0"
-                                                    value={v.price}
+                                                    value={v.label}
                                                     onChange={(e) =>
-                                                        handleVariantChange(
-                                                            idx,
-                                                            'price',
-                                                            e.target.value === '' ? '' : Number(e.target.value),
-                                                        )
+                                                        handleVariantChange(idx, 'label', e.target.value)
                                                     }
-                                                    placeholder="0"
-                                                    className="w-full rounded-lg border border-stone-200 bg-white py-1.5 pr-2.5 pl-8 text-xs font-bold text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
+                                                    placeholder={idx === 0 ? 'Standar / Reguler' : 'Hot, Ice, Large, dll'}
+                                                    className="w-full rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-xs text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
                                                 />
                                             </div>
-                                            {variants.length > 1 && (
+                                            <div className="flex items-center gap-2 sm:w-44">
+                                                <div className="relative min-w-0 flex-1 sm:w-full">
+                                                    <span className="pointer-events-none absolute top-1.5 left-2.5 text-xs font-semibold text-stone-400">
+                                                        Rp
+                                                    </span>
+                                                    <input
+                                                        type="number"
+                                                        required
+                                                        min="0"
+                                                        value={v.price}
+                                                        onChange={(e) =>
+                                                            handleVariantChange(
+                                                                idx,
+                                                                'price',
+                                                                e.target.value === '' ? '' : Number(e.target.value),
+                                                            )
+                                                        }
+                                                        placeholder="0"
+                                                        className="w-full rounded-lg border border-stone-200 bg-white py-1.5 pr-2.5 pl-8 text-xs font-bold text-stone-900 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-white"
+                                                    />
+                                                </div>
                                                 <button
                                                     type="button"
                                                     onClick={() => handleRemoveVariantRow(idx)}
@@ -579,12 +696,12 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                                 >
                                                     <Trash2 className="h-4 w-4" />
                                                 </button>
-                                            )}
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Deskripsi */}
                         <div className="space-y-1">
