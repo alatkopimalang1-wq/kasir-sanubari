@@ -4324,15 +4324,15 @@ function PosContent({
             {/* SLIDE-OUT SIDEBAR DRAWER (BERSIH HIJAU + PUTIH PERSIS REFERENSI USER)       */}
             {/* ========================================================================= */}
             {isSidebarOpen && (
-                <div className="fixed inset-0 z-50 flex animate-in duration-200 fade-in">
-                    {/* Backdrop */}
+                <div className="fixed inset-0 z-50 flex">
+                    {/* Backdrop (Solid translucent without expensive GPU blur filter) */}
                     <div
-                        className="fixed inset-0 cursor-pointer bg-brand-950/60 backdrop-blur-xs transition-opacity"
+                        className="fixed inset-0 cursor-pointer bg-brand-950/70 transition-opacity duration-150"
                         onClick={() => setIsSidebarOpen(false)}
                     />
 
-                    {/* Left Slide Panel */}
-                    <div className="relative z-10 flex h-full w-72 animate-in flex-col border-r border-stone-200 bg-white text-stone-800 shadow-2xl duration-200 slide-in-from-left sm:w-80 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-200">
+                    {/* Left Slide Panel (Hardware GPU Accelerated 60fps) */}
+                    <div className="relative z-10 flex h-full w-72 transform-gpu will-change-transform animate-in duration-150 ease-out slide-in-from-left flex-col border-r border-stone-200 bg-white text-stone-800 shadow-2xl sm:w-80 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-200">
                         {/* Top Back Arrow Button */}
                         <div className="flex justify-end px-3 pt-3 pb-0">
                             <button
@@ -4670,7 +4670,7 @@ function PosContent({
                     <button
                         type="button"
                         onClick={() => setIsSidebarOpen(true)}
-                        className="-ml-1 flex cursor-pointer items-center justify-center rounded-xl border border-brand-800 bg-brand-900 p-2 text-white shadow-xs transition hover:bg-brand-800 active:scale-95"
+                        className="-ml-1 flex cursor-pointer touch-manipulation items-center justify-center rounded-xl border border-brand-800 bg-brand-900 p-2 text-white shadow-xs transition hover:bg-brand-800 active:scale-95"
                         title="Buka Menu Samping POS"
                         aria-label="Buka Menu Samping POS"
                     >
@@ -4810,7 +4810,7 @@ function PosContent({
                         <button
                             type="button"
                             onClick={() => setIsMoreMenuOpen((prev) => !prev)}
-                            className="flex cursor-pointer items-center justify-center rounded-xl border border-brand-800 bg-brand-900 p-2 text-white shadow-xs transition hover:bg-brand-800 active:scale-95"
+                            className="flex cursor-pointer touch-manipulation items-center justify-center rounded-xl border border-brand-800 bg-brand-900 p-2 text-white shadow-xs transition hover:bg-brand-800 active:scale-95"
                             title="Menu Opsi POS / Sinkronisasi"
                             aria-label="Menu Opsi POS / Sinkronisasi"
                         >
@@ -4818,7 +4818,7 @@ function PosContent({
                         </button>
 
                         {isMoreMenuOpen && (
-                            <div className="absolute top-full right-0 z-50 mt-2 w-48 animate-in rounded-xl border border-stone-200 bg-white py-1.5 shadow-xl duration-100 zoom-in-95 fade-in sm:w-52 dark:border-stone-800 dark:bg-stone-900">
+                            <div className="absolute top-full right-0 z-50 mt-2 w-48 transform-gpu will-change-transform animate-in rounded-xl border border-stone-200 bg-white py-1.5 shadow-xl duration-100 zoom-in-95 fade-in sm:w-52 dark:border-stone-800 dark:bg-stone-900">
                                 <button
                                     type="button"
                                     onClick={handleSyncAndReload}
@@ -10511,11 +10511,11 @@ function PosContent({
 
             {/* === MOBILE STICKY BOTTOM CHECKOUT BUTTON (Halaman Produk: Hanya Tampil Tombol Lihat Keranjang Ringkas) === */}
             {activeTab === 'cashier' && cart.length > 0 && (
-                <div className="fixed right-0 bottom-0 left-0 z-30 animate-in border-t border-stone-200 bg-white/95 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,0.12)] backdrop-blur-md duration-200 slide-in-from-bottom md:hidden dark:border-stone-800 dark:bg-stone-900/95">
+                <div className="fixed right-0 bottom-0 left-0 z-30 animate-in border-t border-stone-200 bg-white p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,0.12)] duration-150 slide-in-from-bottom md:hidden dark:border-stone-800 dark:bg-stone-900">
                     <button
                         type="button"
                         onClick={() => setIsMobileCartOpen(true)}
-                        className="flex w-full cursor-pointer items-center justify-between rounded-2xl bg-[#273a41] px-4 py-3 text-sm font-black tracking-wider text-white shadow-md transition-all hover:bg-[#1e2e34] active:scale-[0.99] dark:bg-brand-700 dark:hover:bg-brand-600"
+                        className="flex w-full cursor-pointer touch-manipulation items-center justify-between rounded-2xl bg-[#273a41] px-4 py-3 text-sm font-black tracking-wider text-white shadow-md transition-all hover:bg-[#1e2e34] active:scale-[0.99] dark:bg-brand-700 dark:hover:bg-brand-600"
                     >
                         <div className="flex items-center gap-2">
                             <span className="rounded-lg bg-white/20 px-2 py-0.5 text-xs font-bold text-white">
@@ -10535,12 +10535,12 @@ function PosContent({
 
             {/* === MOBILE CART SLIDE-UP DRAWER === */}
             {isMobileCartOpen && (
-                <div className="fixed inset-0 z-50 flex animate-in flex-col justify-end duration-200 fade-in md:hidden">
+                <div className="fixed inset-0 z-50 flex animate-in flex-col justify-end duration-150 fade-in md:hidden">
                     <div
-                        className="fixed inset-0 cursor-pointer bg-brand-950/70 backdrop-blur-xs dark:bg-black/80"
+                        className="fixed inset-0 cursor-pointer bg-brand-950/75 dark:bg-black/85"
                         onClick={() => setIsMobileCartOpen(false)}
                     />
-                    <div className="relative z-10 flex max-h-[85vh] animate-in flex-col rounded-t-3xl border-t border-stone-200 bg-white text-stone-900 shadow-2xl duration-200 slide-in-from-bottom dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                    <div className="relative z-10 flex max-h-[85vh] transform-gpu will-change-transform animate-in flex-col rounded-t-3xl border-t border-stone-200 bg-white text-stone-900 shadow-2xl duration-150 slide-in-from-bottom dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         <div className="flex items-center justify-between border-b border-stone-200 p-4 dark:border-stone-800">
                             <div className="flex items-center gap-2">
                                 <ShoppingCart className="h-5 w-5 shrink-0 text-stone-800 dark:text-stone-200" />
@@ -10906,8 +10906,8 @@ function PosContent({
 
             {/* === MODAL 1: VARIANT PICKER MODAL (Coffee Beans & Retail) === */}
             {variantPickerProduct && (
-                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-brand-950/60 p-4 backdrop-blur-xs fade-in dark:bg-black/80">
-                    <div className="w-full max-w-md space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-brand-950/75 p-4 duration-150 fade-in dark:bg-black/85">
+                    <div className="w-full max-w-md space-y-4 transform-gpu will-change-transform rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         <div className="flex items-start justify-between border-b border-stone-100 pb-3 dark:border-stone-800">
                             <div className="flex items-center gap-3">
                                 <img
@@ -10988,8 +10988,8 @@ function PosContent({
 
             {/* === MODAL 1B: C.Y.B.R STUDIO RACIK MODAL (KASIR POS) === */}
             {isCybrModalOpen && cybrProduct && (
-                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-brand-950/70 p-3 sm:p-4 backdrop-blur-xs fade-in dark:bg-black/80">
-                    <div className="w-full max-w-lg touch-pan-y space-y-4 rounded-3xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 max-h-[92vh] overflow-y-auto overscroll-y-contain">
+                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-brand-950/75 p-3 duration-150 sm:p-4 fade-in dark:bg-black/85">
+                    <div className="w-full max-w-lg touch-pan-y space-y-4 transform-gpu will-change-transform rounded-3xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 max-h-[92vh] overflow-y-auto overscroll-y-contain">
                         {/* Header */}
                         <div className="flex items-start justify-between border-b border-stone-100 pb-3 dark:border-stone-800">
                             <div className="flex items-center gap-3">
@@ -11241,8 +11241,8 @@ function PosContent({
 
             {/* === MODAL 2: CHECKOUT & PAYMENT MODAL === */}
             {isCheckoutModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/60 p-3 backdrop-blur-xs sm:p-4 dark:bg-black/80">
-                    <div className="my-auto w-full max-w-lg space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/75 p-3 duration-150 sm:p-4 dark:bg-black/85">
+                    <div className="my-auto w-full max-w-lg space-y-4 transform-gpu will-change-transform rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         <div className="flex items-center justify-between border-b border-stone-100 pb-3 dark:border-stone-800">
                             <div className="flex items-center gap-2">
                                 <Receipt className="h-5 w-5 text-brand-700 dark:text-amber-400" />
@@ -11533,8 +11533,8 @@ function PosContent({
 
             {/* === MODAL: REFUND TRANSAKSI === */}
             {isRefundModalOpen && selectedOrderForRefund && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/60 p-3 backdrop-blur-xs sm:p-4 dark:bg-black/80">
-                    <div className="my-auto w-full max-w-md animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 sm:p-6 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/75 p-3 duration-150 sm:p-4 dark:bg-black/85">
+                    <div className="my-auto w-full max-w-md transform-gpu will-change-transform animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 sm:p-6 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         {/* Header */}
                         <div className="flex items-center justify-between border-b border-stone-100 pb-3.5 dark:border-stone-800">
                             <div className="flex items-center gap-2.5">
@@ -11698,8 +11698,8 @@ function PosContent({
 
             {/* === MODAL 3: RECEIPT & SUCCESS / PREVIEW MODAL === */}
             {isReceiptModalOpen && completedReceipt && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/60 p-3 backdrop-blur-xs sm:p-4 dark:bg-black/80">
-                    <div className="my-auto w-full max-w-md space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/75 p-3 duration-150 sm:p-4 dark:bg-black/85">
+                    <div className="my-auto w-full max-w-md space-y-4 transform-gpu will-change-transform rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         <div className="space-y-1 text-center">
                             {completedReceipt.is_refund ? (
                                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-rose-200 bg-rose-100 text-rose-700 dark:border-rose-800 dark:bg-rose-950/50 dark:text-rose-400">
@@ -11829,8 +11829,8 @@ function PosContent({
 
             {/* === MODAL: PENCARIAN & KONEKSI PRINTER BLUETOOTH (ANDROID APK & WEB BT) === */}
             {isBtScannerModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/70 p-3 backdrop-blur-xs sm:p-4 dark:bg-black/80">
-                    <div className="my-auto w-full max-w-lg touch-pan-y animate-in space-y-4 overflow-y-auto overscroll-y-contain rounded-3xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 max-h-[92vh] sm:p-6 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/75 p-3 duration-150 sm:p-4 dark:bg-black/85">
+                    <div className="my-auto w-full max-w-lg touch-pan-y transform-gpu will-change-transform animate-in space-y-4 overflow-y-auto overscroll-y-contain rounded-3xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 max-h-[92vh] sm:p-6 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         {/* Modal Header */}
                         <div className="flex items-start justify-between border-b border-stone-100 pb-3.5 dark:border-stone-800">
                             <div className="flex items-center gap-3">
@@ -12183,8 +12183,8 @@ function PosContent({
 
             {/* === MODAL: ORDERAN MANUAL (NAMA, HPP, HARGA JUAL) === */}
             {isManualOrderModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/60 p-3 backdrop-blur-xs sm:p-4 dark:bg-black/80">
-                    <div className="my-auto w-full max-w-lg animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 sm:p-6 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/75 p-3 duration-150 sm:p-4 dark:bg-black/85">
+                    <div className="my-auto w-full max-w-lg transform-gpu will-change-transform animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 sm:p-6 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         {/* Modal Header */}
                         <div className="flex items-center justify-between border-b border-stone-100 pb-3.5 dark:border-stone-800">
                             <div className="flex items-center gap-2.5">
@@ -12388,8 +12388,8 @@ function PosContent({
 
             {/* === MODAL: SIMPAN PESANAN KE ANTRIAN (HOLD ORDER) === */}
             {isHoldModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/60 p-3 backdrop-blur-xs sm:p-4 dark:bg-black/80">
-                    <div className="my-auto w-full max-w-md animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/75 p-3 duration-150 sm:p-4 dark:bg-black/85">
+                    <div className="my-auto w-full max-w-md transform-gpu will-change-transform animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         <div className="flex items-center justify-between border-b border-stone-100 pb-3 dark:border-stone-800">
                             <div className="flex items-center gap-2">
                                 <Clock className="h-5 w-5 text-amber-600 dark:text-amber-400" />
@@ -12501,8 +12501,8 @@ function PosContent({
 
             {/* === MODAL: BAGIKAN STRUK PESANAN KE WHATSAPP (INVOICE DIGITAL A4 PDF) === */}
             {isSharePreBillModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/60 p-3 backdrop-blur-xs sm:p-4 dark:bg-black/80">
-                    <div className="my-auto w-full max-w-lg animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-brand-950/75 p-3 duration-150 sm:p-4 dark:bg-black/85">
+                    <div className="my-auto w-full max-w-lg transform-gpu will-change-transform animate-in space-y-4 rounded-2xl border border-stone-200 bg-white p-5 text-stone-900 shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100">
                         {/* Header */}
                         <div className="flex items-center justify-between border-b border-stone-100 pb-3 dark:border-stone-800">
                             <div className="flex items-center gap-2.5">
@@ -12693,8 +12693,8 @@ function PosContent({
 
             {/* --- MODAL PENGATURAN DISKON TRANSAKSI (NOMINAL / PERSENTASE) --- */}
             {isCartDiscountModalOpen && (
-                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-black/60 p-4 backdrop-blur-xs fade-in">
-                    <div className="w-full max-w-md overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900">
+                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-black/75 p-4 duration-150 fade-in">
+                    <div className="w-full max-w-md transform-gpu will-change-transform overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900">
                         {/* Header */}
                         <div className="flex items-center justify-between border-b border-stone-800 bg-stone-900 p-4 text-white dark:bg-stone-950">
                             <div className="flex items-center gap-2">
@@ -12941,8 +12941,8 @@ function PosContent({
 
             {/* --- MODAL PENGATURAN DISKON PER-ITEM (NOMINAL / PERSENTASE) --- */}
             {editingDiscountItem && (
-                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-black/60 p-4 backdrop-blur-xs fade-in">
-                    <div className="w-full max-w-md overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900">
+                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-black/75 p-4 duration-150 fade-in">
+                    <div className="w-full max-w-md transform-gpu will-change-transform overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900">
                         {/* Header */}
                         <div className="flex items-center justify-between border-b border-stone-800 bg-[#273a41] p-4 text-white dark:bg-stone-950">
                             <div className="flex items-center gap-2">
@@ -13199,8 +13199,8 @@ function PosContent({
             {/* MODAL: MODE OFFLINE & SINKRONISASI DATA                                     */}
             {/* ========================================================================= */}
             {isOfflineModalOpen && (
-                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-black/60 p-3 backdrop-blur-xs duration-150 fade-in sm:p-4">
-                    <div className="flex max-h-[90vh] w-full max-w-2xl animate-in flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900">
+                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-black/75 p-3 duration-150 fade-in sm:p-4">
+                    <div className="flex max-h-[90vh] w-full max-w-2xl transform-gpu will-change-transform animate-in flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900">
                         {/* Modal Header */}
                         <div className="flex shrink-0 items-center justify-between border-b border-stone-200 bg-stone-50/60 p-4 sm:p-5 dark:border-stone-800 dark:bg-stone-900/60">
                             <div className="flex items-center gap-3">
@@ -13553,8 +13553,8 @@ function PosContent({
             {/* MODAL DIALOG MENGATUR PRINTER & MARGIN STRUK (DEPRECATED: NOW INLINE) */}
             {/* ========================================================================= */}
             {false && isPrinterModalOpen && (
-                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-brand-950/60 p-3 backdrop-blur-xs duration-150 fade-in sm:p-4">
-                    <div className="relative flex w-full max-w-2xl animate-in flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900">
+                <div className="fixed inset-0 z-50 flex animate-in items-center justify-center bg-brand-950/75 p-3 duration-150 fade-in sm:p-4">
+                    <div className="relative flex w-full max-w-2xl transform-gpu will-change-transform animate-in flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl duration-150 zoom-in-95 dark:border-stone-800 dark:bg-stone-900">
                         {/* Blue Modal Header */}
                         <div className="flex shrink-0 items-center justify-between bg-[#0284c7] px-5 py-3.5 text-white shadow-sm">
                             <div className="flex items-center gap-2.5">

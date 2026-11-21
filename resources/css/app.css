@@ -120,6 +120,12 @@
 body {
     font-size: 16px;
     line-height: 1.6;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, [role="button"], a, input, select, textarea {
+    touch-action: manipulation;
 }
 
 :root {
