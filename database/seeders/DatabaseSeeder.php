@@ -153,6 +153,15 @@ class DatabaseSeeder extends Seeder
                     );
                 }
             }
+
+            if (! $product->images()->exists()) {
+                $autoPath = \App\Services\ProductImageMatcher::match($product->name, $sp['category']->name);
+                $product->images()->create([
+                    'path' => $autoPath,
+                    'is_primary' => true,
+                    'alt' => $product->name,
+                ]);
+            }
         }
     }
 }

@@ -765,7 +765,7 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                         <span>{imageFile ? 'Ganti Foto' : 'Pilih Foto Menu'}</span>
                                     </button>
                                     <p className="truncate text-[10px] text-stone-400">
-                                        {imageFile ? imageFile.name : 'Format: JPG, PNG, WEBP (Maks 5MB)'}
+                                        {imageFile ? imageFile.name : 'Otomatis diisi foto menu yang sesuai jika tidak upload (JPG, PNG, WEBP)'}
                                     </p>
                                 </div>
                             </div>

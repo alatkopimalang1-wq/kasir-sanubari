@@ -2192,12 +2192,6 @@ class PosController extends Controller
                     || $product->series === 'custom-blend'
                     || str_contains(strtolower((string) $product->name), 'c.y.b.r');
 
-                if ($isCybrProduct) {
-                    $imageUrl = '/brand/cybr-custom-blend.jpg';
-                } elseif (! $imageUrl) {
-                    $imageUrl = '/brand/logo-circle.png';
-                }
-
                 $firstCat = $product->categories->first();
                 $firstCatName = $firstCat
                     ? ($firstCat->getTranslation('name', 'id') ?? (is_array($firstCat->name) ? ($firstCat->name['id'] ?? reset($firstCat->name)) : $firstCat->name) ?? $firstCat->slug)
@@ -2206,6 +2200,12 @@ class PosController extends Controller
                 $prodName = $product->getTranslation('name', 'id')
                     ?? (is_array($product->name) ? ($product->name['id'] ?? reset($product->name)) : $product->name)
                     ?? $product->slug;
+
+                if ($isCybrProduct) {
+                    $imageUrl = '/brand/cybr-custom-blend.jpg';
+                } elseif (! $imageUrl || $imageUrl === '/brand/logo-circle.png') {
+                    $imageUrl = \App\Services\ProductImageMatcher::getUrl((string) $prodName, $firstCatName);
+                }
 
                 return [
                     'id' => $product->id,
@@ -2308,6 +2308,15 @@ class PosController extends Controller
                 'path' => $path,
                 'is_primary' => true,
             ]);
+        } else {
+            $cat = ! empty($validated['category_id']) ? Category::find($validated['category_id']) : null;
+            $catName = $cat ? ($cat->getTranslation('name', 'id') ?? $cat->name) : null;
+            $autoPath = \App\Services\ProductImageMatcher::match($name, $catName);
+            $product->images()->create([
+                'path' => $autoPath,
+                'is_primary' => true,
+                'alt' => $name,
+            ]);
         }
 
         return response()->json([
@@ -2403,6 +2412,15 @@ class PosController extends Controller
             $product->images()->create([
                 'path' => $path,
                 'is_primary' => true,
+            ]);
+        } elseif (! $product->images()->exists()) {
+            $cat = ! empty($validated['category_id']) ? Category::find($validated['category_id']) : $product->categories->first();
+            $catName = $cat ? ($cat->getTranslation('name', 'id') ?? $cat->name) : null;
+            $autoPath = \App\Services\ProductImageMatcher::match($name, $catName);
+            $product->images()->create([
+                'path' => $autoPath,
+                'is_primary' => true,
+                'alt' => $name,
             ]);
         }
 
