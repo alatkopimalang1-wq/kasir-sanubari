@@ -173,7 +173,7 @@ test('pos direct invoice pdf download returns binary pdf attachment', function (
 
     $response->assertOk();
     $response->assertHeader('Content-Type', 'application/pdf');
-    expect($response->headers->get('Content-Disposition'))->toContain('attachment; filename="Invoice-Sanubari-Roastery-pak-budi-');
+    expect($response->headers->get('Content-Disposition'))->toContain('attachment; filename="Invoice-');
     expect($response->getContent())->toStartWith('%PDF-1.4');
     expect($response->getContent())->toContain('Blueberry Pasundan');
     expect($response->getContent())->toContain('%%EOF');

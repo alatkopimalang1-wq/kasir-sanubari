@@ -10,22 +10,22 @@ use Filament\Support\Icons\Heroicon;
 
 class LaporanLabaRugi extends Page
 {
-    protected static bool $shouldRegisterNavigation = false;
+    protected static bool $shouldRegisterNavigation = true;
 
     public static function shouldRegisterNavigation(): bool
     {
-        return false;
+        return true;
     }
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::PresentationChartLine;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Katalog & Toko';
+    protected static string|\UnitEnum|null $navigationGroup = 'Manajemen POS Kasir';
 
     protected static ?string $navigationLabel = 'Laporan Laba Rugi';
 
     protected static ?string $title = 'Laporan Laba Rugi (Konsolidasi Web & POS)';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 3;
 
     protected string $view = 'filament.pages.laporan-laba-rugi';
 

@@ -154,6 +154,6 @@ test('admin user can access and render filament laporan laba rugi page with live
         ->assertSet('activeViewTab', 'pengeluaran');
 });
 
-test('laporan laba rugi menu is not registered in admin navigation sidebar', function () {
-    expect(LaporanLabaRugi::shouldRegisterNavigation())->toBeFalse();
+test('laporan laba rugi menu is registered in admin navigation sidebar under pos management', function () {
+    expect(LaporanLabaRugi::shouldRegisterNavigation())->toBeTrue();
 });

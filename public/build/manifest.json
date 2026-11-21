@@ -33,7 +33,7 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-BmpW8T4N.css",
+    "file": "assets/app-Bmm3Ao2g.css",
     "name": "app",
     "names": [
       "app.css"
@@ -42,7 +42,7 @@
     "isEntry": true
   },
   "resources/css/filament/admin/theme.css": {
-    "file": "assets/theme-CfVY8MkO.css",
+    "file": "assets/theme-BXZt4laZ.css",
     "name": "theme",
     "names": [
       "theme.css"
@@ -51,7 +51,7 @@
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-DiYrdmFH.js",
+    "file": "assets/app-wZ2oK-Rm.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -66,7 +66,7 @@
     ]
   },
   "resources/js/pages/pos.tsx": {
-    "file": "assets/pos-D76jLuqj.js",
+    "file": "assets/pos-BeWM9Fe6.js",
     "name": "pos",
     "src": "resources/js/pages/pos.tsx",
     "isDynamicEntry": true,
@@ -92,7 +92,7 @@
     ]
   },
   "resources/js/pages/pos/login.tsx": {
-    "file": "assets/login-DGxs2U0o.js",
+    "file": "assets/login-PSOPrpaL.js",
     "name": "login",
     "src": "resources/js/pages/pos/login.tsx",
     "isDynamicEntry": true,

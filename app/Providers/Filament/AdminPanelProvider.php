@@ -44,16 +44,17 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(LayupPlugin::make())
             ->plugin(FilamentIconPickerPlugin::make())
             ->navigationGroups([
+                'Manajemen POS Kasir',
                 'Halaman Awal',
                 'Katalog & Toko',
                 'Konten & Media',
                 'Pengaturan',
             ])
             ->navigationItems([
-                NavigationItem::make('Aplikasi POS (Kasir)')
+                NavigationItem::make('Buka Kasir POS')
                     ->url(fn (): string => route('pos.index'))
                     ->icon('heroicon-o-computer-desktop')
-                    ->group('Katalog & Toko')
+                    ->group('Manajemen POS Kasir')
                     ->sort(0)
                     ->openUrlInNewTab(),
             ])

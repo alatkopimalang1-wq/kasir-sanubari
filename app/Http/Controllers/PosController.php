@@ -237,7 +237,7 @@ class PosController extends Controller
                 'is_staff_restricted' => $isStaffCashier,
                 'can_view_profit_loss' => auth()->user() && (auth()->user()->isAdmin() || auth()->user()->isOwner()),
             ],
-            'staffList' => (auth()->user() && (auth()->user()->isOwner() || auth()->user()->isAdmin()))
+            'staffList' => (auth()->user() && auth()->user()->isOwner())
                 ? User::query()
                     ->whereIn('role', ['owner', 'admin', 'kasir'])
                     ->orWhere('id', 1)
