@@ -74,6 +74,7 @@ import {
     Columns,
 } from 'lucide-react';
 import { useAppearance } from '@/hooks/use-appearance';
+import { getAutoMenuImage } from '@/lib/menu-image';
 import {
     ReceiptData,
     PaperWidth,
@@ -475,7 +476,7 @@ const POS_SHIPPING_COURIER_STORAGE_KEY = 'sanubari_pos_shipping_courier';
 const POS_CUSTOMER_ADDRESS_STORAGE_KEY = 'sanubari_pos_customer_address';
 const POS_OFFLINE_ORDERS_STORAGE_KEY = 'sanubari_pos_offline_orders';
 const POS_MANUAL_OFFLINE_STORAGE_KEY = 'sanubari_pos_manual_offline';
-const POS_CACHED_CATALOG_STORAGE_KEY = 'sanubari_pos_cached_catalog_v6';
+const POS_CACHED_CATALOG_STORAGE_KEY = 'sanubari_pos_cached_catalog_v8';
 
 export const normalizePosCategory = (c: any): Category => {
     let name = '';
@@ -530,24 +531,6 @@ export const normalizePosProduct = (p: any): Product => {
               ? Math.max(...variants.map((v: any) => Number(v.price) || 0))
               : minPrice;
 
-    const isCybr =
-        p.slug === 'byob' ||
-        p.series === 'cybr' ||
-        p.series === 'custom-blend' ||
-        (typeof p.name === 'string' && p.name.toLowerCase().includes('c.y.b.r'));
-
-    let img = isCybr ? '/brand/cybr-custom-blend.jpg' : p.image;
-    if (!img || img === '/images/products/packaging-standing-pouch.png') {
-        img = '/brand/logo-circle.png';
-    }
-
-    let catName = null;
-    if (typeof p.category_name === 'string') {
-        catName = p.category_name;
-    } else if (p.category_name && typeof p.category_name === 'object') {
-        catName = p.category_name.id || p.category_name.en || Object.values(p.category_name)[0] || null;
-    }
-
     let prodName = '';
     if (typeof p.name === 'string') {
         prodName = p.name;
@@ -555,6 +538,24 @@ export const normalizePosProduct = (p: any): Product => {
         prodName = p.name.id || p.name.en || Object.values(p.name)[0] || '';
     } else {
         prodName = String(p.slug || '');
+    }
+
+    const isCybr =
+        p.slug === 'byob' ||
+        p.series === 'cybr' ||
+        p.series === 'custom-blend' ||
+        prodName.toLowerCase().includes('c.y.b.r');
+
+    let img = isCybr ? '/brand/cybr-custom-blend.jpg' : p.image;
+    if (!img || img === '/images/products/packaging-standing-pouch.png' || img === '/brand/logo-circle.png') {
+        img = getAutoMenuImage(prodName);
+    }
+
+    let catName = null;
+    if (typeof p.category_name === 'string') {
+        catName = p.category_name;
+    } else if (p.category_name && typeof p.category_name === 'object') {
+        catName = p.category_name.id || p.category_name.en || Object.values(p.category_name)[0] || null;
     }
 
     return {
@@ -706,6 +707,8 @@ function PosContent({
                 localStorage.removeItem('sanubari_pos_cached_catalog_v3');
                 localStorage.removeItem('sanubari_pos_cached_catalog_v4');
                 localStorage.removeItem('sanubari_pos_cached_catalog_v5');
+                localStorage.removeItem('sanubari_pos_cached_catalog_v6');
+                localStorage.removeItem('sanubari_pos_cached_catalog_v7');
 
                 // 1. FASTEST PATH: Read from persistent local cache for instant 0ms load
                 const cached = localStorage.getItem(
@@ -721,7 +724,7 @@ function PosContent({
                     }
                 }
 
-                // 2. Fallback: Server props on fresh installs
+                // 2. Server props on fresh installs or cache resets
                 if (Array.isArray(initialProducts) && initialProducts.length > 0) {
                     return initialProducts.map(normalizePosProduct);
                 }
@@ -835,13 +838,16 @@ function PosContent({
                     ) {
                         const normalized = data.products.map(normalizePosProduct);
                         setProducts((prev) => {
-                            if (
+                            const isIdentical =
                                 prev.length === normalized.length &&
-                                prev[0]?.id === normalized[0]?.id &&
-                                prev[0]?.min_price === normalized[0]?.min_price &&
-                                prev[prev.length - 1]?.id ===
-                                    normalized[normalized.length - 1]?.id
-                            ) {
+                                prev.every(
+                                    (p, idx) =>
+                                        p.id === normalized[idx]?.id &&
+                                        p.image === normalized[idx]?.image &&
+                                        p.min_price === normalized[idx]?.min_price &&
+                                        p.name === normalized[idx]?.name,
+                                );
+                            if (isIdentical) {
                                 return prev;
                             }
                             return normalized;
@@ -5054,7 +5060,7 @@ function PosContent({
                                                     <img
                                                         src={
                                                             product.image ||
-                                                            '/brand/logo-circle.png'
+                                                            getAutoMenuImage(product.name)
                                                         }
                                                         alt={product.name}
                                                         draggable={false}
@@ -5062,7 +5068,10 @@ function PosContent({
                                                         onError={(e) => {
                                                             const target =
                                                                 e.currentTarget;
-                                                            if (
+                                                            const auto = getAutoMenuImage(product.name);
+                                                            if (!target.src.endsWith(auto)) {
+                                                                target.src = auto;
+                                                            } else if (
                                                                 !target.src.endsWith(
                                                                     '/brand/logo-circle.png',
                                                                 )
@@ -5272,13 +5281,16 @@ function PosContent({
                                             <img
                                                 src={
                                                     item.image ||
-                                                    '/brand/logo-circle.png'
+                                                    getAutoMenuImage(item.product_name)
                                                 }
                                                 alt={item.product_name}
                                                 onError={(e) => {
                                                     const target =
                                                         e.currentTarget;
-                                                    if (
+                                                    const auto = getAutoMenuImage(item.product_name);
+                                                    if (!target.src.endsWith(auto)) {
+                                                        target.src = auto;
+                                                    } else if (
                                                         !target.src.endsWith(
                                                             '/brand/logo-circle.png',
                                                         )
@@ -6248,12 +6260,15 @@ function PosContent({
                                         <img
                                             src={
                                                 p.image ||
-                                                '/brand/logo-circle.png'
+                                                getAutoMenuImage(p.name)
                                             }
                                             alt={p.name}
                                             onError={(e) => {
                                                 const target = e.currentTarget;
-                                                if (
+                                                const auto = getAutoMenuImage(p.name);
+                                                if (!target.src.endsWith(auto)) {
+                                                    target.src = auto;
+                                                } else if (
                                                     !target.src.endsWith(
                                                         '/brand/logo-circle.png',
                                                     )
@@ -10569,13 +10584,16 @@ function PosContent({
                                             <img
                                                 src={
                                                     item.image ||
-                                                    '/brand/logo-circle.png'
+                                                    getAutoMenuImage(item.product_name)
                                                 }
                                                 alt={item.product_name}
                                                 onError={(e) => {
                                                     const target =
                                                         e.currentTarget;
-                                                    if (
+                                                    const auto = getAutoMenuImage(item.product_name);
+                                                    if (!target.src.endsWith(auto)) {
+                                                        target.src = auto;
+                                                    } else if (
                                                         !target.src.endsWith(
                                                             '/brand/logo-circle.png',
                                                         )
@@ -10867,12 +10885,15 @@ function PosContent({
                                 <img
                                     src={
                                         variantPickerProduct.image ||
-                                        '/brand/logo-circle.png'
+                                        getAutoMenuImage(variantPickerProduct.name)
                                     }
                                     alt={variantPickerProduct.name}
                                     onError={(e) => {
                                         const target = e.currentTarget;
-                                        if (
+                                        const auto = getAutoMenuImage(variantPickerProduct.name);
+                                        if (!target.src.endsWith(auto)) {
+                                            target.src = auto;
+                                        } else if (
                                             !target.src.endsWith(
                                                 '/brand/logo-circle.png',
                                             )

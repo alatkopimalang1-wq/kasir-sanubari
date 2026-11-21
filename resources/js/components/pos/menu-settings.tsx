@@ -17,6 +17,7 @@ import {
     X,
 } from 'lucide-react';
 import { PosCategoryItem } from './category-settings';
+import { getAutoMenuImage } from '../../lib/menu-image';
 
 export const getSafeCategoryName = (cat: any): string => {
     if (!cat) return '';
@@ -897,11 +898,20 @@ export const MenuSettings: React.FC<MenuSettingsProps> = ({
                                             {/* Foto */}
                                             <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border border-stone-200 bg-stone-100 shadow-2xs sm:h-12 sm:w-12 dark:border-stone-700 dark:bg-stone-800">
                                                 <img
-                                                    src={product.image || '/brand/logo-circle.png'}
+                                                    src={
+                                                        product.image ||
+                                                        getAutoMenuImage(product.name)
+                                                    }
                                                     alt={product.name}
                                                     className="h-full w-full object-cover"
                                                     onError={(e) => {
-                                                        (e.target as HTMLImageElement).src = '/brand/logo-circle.png';
+                                                        const target = e.target as HTMLImageElement;
+                                                        const auto = getAutoMenuImage(product.name);
+                                                        if (!target.src.endsWith(auto)) {
+                                                            target.src = auto;
+                                                        } else {
+                                                            target.src = '/brand/logo-circle.png';
+                                                        }
                                                     }}
                                                 />
                                             </div>
