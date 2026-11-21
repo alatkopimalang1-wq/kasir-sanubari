@@ -57,7 +57,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String POS_URL = "https://sanubariroastery.co.id/pos";
+    private static final String POS_URL = "https://sanubaripos.store/pos";
     private static final String PREFS_NAME = "SanubariPosBluetoothPrefs";
     private static final String PREF_BT_ADDRESS = "saved_bt_address";
     private static final String PREF_BT_NAME = "saved_bt_name";

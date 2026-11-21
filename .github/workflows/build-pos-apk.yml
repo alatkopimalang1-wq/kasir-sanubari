@@ -56,7 +56,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: pos-apk-latest
-          name: Sanubari POS Android APK (Latest v2.0 - Native Bluetooth)
+          name: Sanubari POS Android APK (Latest v2.1 - Native Bluetooth)
           files: build-output/Sanubari-POS.apk
           prerelease: false
         env:
