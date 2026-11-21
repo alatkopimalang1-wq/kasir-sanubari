@@ -4598,24 +4598,6 @@ function PosContent({
                                     </span>
                                 </button>
                             )}
-
-                            {/* 9. Tombol Backoffice Admin POS (Khusus Admin / Owner) */}
-                            {(isAdmin || isOwner) && (
-                                <div className="px-3 pt-2">
-                                    <a
-                                        href="/admin"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-3.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm font-bold text-amber-900 transition hover:bg-amber-500/20 dark:border-amber-500/30 dark:bg-amber-950/40 dark:text-amber-300 dark:hover:bg-amber-950/60"
-                                    >
-                                        <LayoutDashboard className="h-5 w-5 shrink-0 stroke-[2.2] text-amber-600 dark:text-amber-400" />
-                                        <span>Backoffice Admin POS</span>
-                                        <span className="ml-auto rounded-full bg-amber-600 px-2 py-0.5 text-[10px] font-black uppercase text-white shadow-xs">
-                                            Admin
-                                        </span>
-                                    </a>
-                                </div>
-                            )}
                         </div>
 
                         {/* Theme / Appearance Switcher: Terang / Gelap / Sistem */}
